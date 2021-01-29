@@ -1,0 +1,1 @@
+export const isError = (errors:Object) => Boolean(Object.entries(errors).length)
