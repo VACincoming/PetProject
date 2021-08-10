@@ -9,9 +9,9 @@ import RegistrationPage from 'pages/RegistrationPage';
 const Routers: FC = () => {
   return (
     <Switch>
-      <Route path="/login"> <LoginPage /> </Route>
-      <Route path="/registration"> <RegistrationPage /> </Route>
-      <Route exact path="/"> <MainPage /> </Route>
+      <Route path="/login"><LoginPage /></Route>
+      <Route path="/registration"><RegistrationPage /></Route>
+      <Route exact path="/"><MainPage /></Route>
     </Switch>
   )
 } 

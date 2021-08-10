@@ -1,5 +1,7 @@
 import React from 'react';
 import StarIcon from 'static/icons/StarIcon';
+import CustomButton from 'components/CustomButton';
+import Avatar from '@material-ui/core/Avatar';
 import './styles.scss'
 
 const Header = () => {
@@ -8,7 +10,13 @@ const Header = () => {
       <div className="header_logo">
         Find Pet
       </div>
-      <StarIcon height="30px" width="30px" />
+      <div className="header_menu-wrapper">
+        <CustomButton classes="header_favorites-btn">
+          <StarIcon height="30px" width="30px" />
+        </CustomButton>
+        <CustomButton classes="header_add-btn">ADD AN ADD</CustomButton>
+        <Avatar alt="Cindy Baker">AN</Avatar>
+      </div>
     </div>
   )
 }

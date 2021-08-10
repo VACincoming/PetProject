@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { isError } from 'helpers/helpers';
 import './styles.scss';
 import { Link as RouterLink } from 'react-router-dom';
-
+import { loginApi } from 'api/auth.api';
 
 import { 
   Formik,
@@ -52,7 +52,7 @@ const LoginPage:FC = () => {
   const history = useHistory();
 
   const handleLogin = () => {
-    history.push('/');
+    // history.push('/');
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -71,8 +71,14 @@ const LoginPage:FC = () => {
           password: '',
         }}
         validationSchema={loginSchema}
-        onSubmit={(data, { setSubmitting }) => {
+        onSubmit={async (data, { setErrors }) => {
           console.log(data);
+          await loginApi(data).then((res:any) => {
+            console.log(res)
+            if (res.status !== 200) {
+              setErrors(res.message);
+            }
+          })
         }}
       >
         {({ values, errors }) => {
@@ -116,11 +122,11 @@ const LoginPage:FC = () => {
                   label="Remember me"
                 />
                 <CustomButton
-                  type="button"
+                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
-                  onClick={handleLogin}
+                  // onClick={handleLogin}
                   disabled={isError(errors)}
                   classes={classes.submit}
                 >

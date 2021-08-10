@@ -12,7 +12,8 @@ import CustomInput from 'components/CustomInput';
 import CustomButton from 'components/CustomButton';
 import { registrationSchema } from 'validation/UserValidation';
 import { isError } from 'helpers/helpers';
-import styled from "styled-components";
+import styled from 'styled-components';
+import { registrationApi } from 'api/auth.api';
 
 const RegistrationFormWrapper = styled.div`
   margin-top: 16px;
@@ -45,8 +46,9 @@ const RegistrationForm: React.FC<any> = () => {
           repeatPassword: ''
         }}
         validationSchema={registrationSchema}
-        onSubmit={(data, { setSubmitting }) => {
-          console.log(data);
+        onSubmit={(data) => {
+          Reflect.deleteProperty(data, 'repeatPassword');
+          registrationApi(data);
         }}
       >
         {({ errors, values }) => {
