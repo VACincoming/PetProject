@@ -1,0 +1,7 @@
+@import '../../styles/index.scss';
+
+[data-component="main-page"] {
+    background-color: $main-background;
+    padding: 1rem 2rem;
+    min-height: 89vh;
+}

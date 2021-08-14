@@ -1,6 +1,6 @@
 import React from "react";
 import Master from "containers/Master";
-import "./styles/_index.scss";
+import "./index.scss";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const App: React.FC = () => {
