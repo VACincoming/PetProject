@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Header from 'components/Header';
 import Routers from 'pages/Routers';
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 const Master: FC = () => {
   const pathname = useLocation().pathname;
