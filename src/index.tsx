@@ -1,13 +1,17 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
 import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={null}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root')
