@@ -1,17 +1,13 @@
 import React, { memo } from 'react';
 import './styles.scss';
-import { 
-    Formik,
-    Field,
-    FastField,
-    Form
-} from "formik";
+import { Formik } from "formik";
 
 const CustomForm: React.FC<any> = ({
     validateOnChange,
     initialValues={},
     validationSchema={},
     onSubmit = () => {},
+    children
 }) => {
     return (
         <Formik
@@ -20,7 +16,7 @@ const CustomForm: React.FC<any> = ({
             validationSchema={validationSchema}
             onSubmit={(data) => onSubmit(data)}
         >
-
+            {children}
         </Formik>
     );
 }

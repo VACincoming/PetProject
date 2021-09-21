@@ -5,6 +5,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CustomInput from "components/CustomInput";
 import CustomButton from "components/CustomButton";
+import CustomForm from "components/CustomForm";
 import { registrationSchema } from "validation/UserValidation";
 import { isError } from "helpers/helpers";
 import styled from "styled-components";
@@ -33,7 +34,7 @@ const RegistrationForm: React.FC<any> = () => {
     const { t } = useTranslation();
     return (
         <RegistrationFormWrapper>
-            {/* <Formik
+            <CustomForm
                 validateOnChange
                 initialValues={{
                     email: "",
@@ -41,11 +42,11 @@ const RegistrationForm: React.FC<any> = () => {
                     repeatPassword: "",
                 }}
                 validationSchema={registrationSchema}
-                onSubmit={(data) => {
+                onSubmit={(data:any) => {
                     Reflect.deleteProperty(data, "repeatPassword");
                     registrationApi(data);
                 }}
-            > */}
+            >
                 {({ errors, values }:any) => {
                     return (
                         <Form>
@@ -119,7 +120,7 @@ const RegistrationForm: React.FC<any> = () => {
                         </Form>
                     );
                 }}
-            {/* </Formik> */}
+                </CustomForm>
         </RegistrationFormWrapper>
     );
 };

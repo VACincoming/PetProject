@@ -23,14 +23,14 @@ const CreatePage = () => {
             <Grid container>
                 <Text tag="h2" title="Create Announ" />
                 <Grid xs={12}>
-                    <Grid xs={12} md={6} sm={6}>
+                    {/* <Grid xs={12} md={6} sm={6}>
                         <CustomInput
                             fullWidth={true}
                             label="Create Post"
                             required={true}
                             // name="CreatePost"
                         />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Grid>
         </div>
