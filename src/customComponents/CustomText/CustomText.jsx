@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-const Text = memo((
+const CustomText = memo((
   {
     tag: Tag = 'span',
     children = [],
@@ -13,4 +13,4 @@ const Text = memo((
   )
 );
 
-export default Text;
+export default CustomText;

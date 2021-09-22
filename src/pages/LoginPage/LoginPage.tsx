@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import CustomInput from 'components/CustomInput';
-import CustomButton from 'components/CustomButton';
+import CustomInput from 'customComponents/CustomInput';
+import CustomButton from 'customComponents/CustomButton';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';

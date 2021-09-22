@@ -3,9 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from 'react-i18next';
 import { Field } from "formik";
 import Grid from "@material-ui/core/Grid";
-import Text from "components/Text";
-import CustomForm from "components/CustomForm";
-import CustomInput from "components/CustomInput";
+import Text from "customComponents/CustomText";
+import CustomForm from "customComponents/CustomForm";
+import CustomInput from "customComponents/CustomInput";
 import "./styles.scss";
 
 const useStyles = makeStyles((theme) => ({

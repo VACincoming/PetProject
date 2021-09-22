@@ -1,6 +1,6 @@
 import React from 'react';
 import StarIcon from 'static/icons/StarIcon';
-import CustomButton from 'components/CustomButton';
+import CustomButton from 'customComponents/CustomButton';
 import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom'
 import Logo from 'static/img/logo.png';
