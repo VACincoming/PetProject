@@ -3,18 +3,18 @@ import './styles.scss';
 import { Formik } from "formik";
 
 const CustomForm: React.FC<any> = ({
-    validateOnChange,
-    initialValues={},
-    validationSchema={},
+    validateOnChange = false,
+    initialValues = {},
     onSubmit = () => {},
-    children
+    children,
+    ...attributes
 }:any) => {
     return (
         <Formik
             validateOnChange={validateOnChange}
             initialValues={initialValues}
-            validationSchema={validationSchema}
             onSubmit={(data:any) => onSubmit(data)}
+            {...attributes}
         >
             {children}
         </Formik>
