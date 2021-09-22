@@ -4,10 +4,16 @@ import CustomButton from 'components/CustomButton';
 import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom'
 import Logo from 'static/img/logo.png';
-import './styles.scss'
+import './styles.scss';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const history = useHistory();
+  const { i18n } = useTranslation();
+  const changeLanguage = (lang:string) => {
+      console.log(i18n);
+      i18n.changeLanguage(lang);
+  }
   return (
     <div className="header">
       <div className="header_logo" onClick={() => history.push('/')}>
@@ -17,6 +23,8 @@ const Header = () => {
         <CustomButton classes="header_favorites-btn">
           <StarIcon height="30px" width="30px" />
         </CustomButton>
+        <CustomButton text='en' onClick={()=> changeLanguage('en')}/>
+        <CustomButton text='ru' onClick={()=> changeLanguage('ru')} />
         <CustomButton 
           onClick={() => history.push('/create')}
           classes="header_add-btn"

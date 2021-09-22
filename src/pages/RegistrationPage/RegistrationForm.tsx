@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, FastField, Form } from "formik";
+import { Field, FastField, Form } from "formik";
 import { Grid } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,32 +8,13 @@ import CustomButton from "components/CustomButton";
 import CustomForm from "components/CustomForm";
 import { registrationSchema } from "validation/UserValidation";
 import { isError } from "helpers/helpers";
-import styled from "styled-components";
 import { registrationApi } from "api/auth.api";
-
-const RegistrationFormWrapper = styled.div`
-    margin-top: 16px;
-    .MuiButton-contained {
-        margin: 8px;
-    }
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-        box-shadow: 0 0 0 30px #fafafa inset !important;
-    }
-    .MuiOutlinedInput-adornedEnd {
-        padding-right: 8px;
-    }
-    .MuiInputAdornment-root .MuiButtonBase-root {
-        padding-right: 0px;
-    }
-`;
+import './styles.scss'
 
 const RegistrationForm: React.FC<any> = () => {
     const { t } = useTranslation();
     return (
-        <RegistrationFormWrapper>
+        <div data-component="registration-form">
             <CustomForm
                 validateOnChange
                 initialValues={{
@@ -121,7 +102,7 @@ const RegistrationForm: React.FC<any> = () => {
                     );
                 }}
                 </CustomForm>
-        </RegistrationFormWrapper>
+        </div>
     );
 };
 

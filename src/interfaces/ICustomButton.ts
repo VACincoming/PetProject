@@ -7,6 +7,7 @@ export interface ICustomButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   classes?: string,
   children?: React.ReactNode,
   type?: 'submit' | 'reset' | 'button',
+  text?: string,
   fullWidth?: boolean,
   disabled?: boolean,
 }

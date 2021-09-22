@@ -8,13 +8,13 @@ const CustomForm: React.FC<any> = ({
     validationSchema={},
     onSubmit = () => {},
     children
-}) => {
+}:any) => {
     return (
         <Formik
             validateOnChange={validateOnChange}
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(data) => onSubmit(data)}
+            onSubmit={(data:any) => onSubmit(data)}
         >
             {children}
         </Formik>

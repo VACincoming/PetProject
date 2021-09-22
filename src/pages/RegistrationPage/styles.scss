@@ -1,0 +1,22 @@
+[data-component='registration-form'] {
+    margin-top: 16px;
+
+    .MuiButton-contained {
+        margin: 8px;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        box-shadow: 0 0 0 30px #fafafa inset !important;
+    }
+    
+    .MuiOutlinedInput-adornedEnd {
+        padding-right: 8px;
+    }
+    
+    .MuiInputAdornment-root .MuiButtonBase-root {
+        padding-right: 0px;
+    }
+}

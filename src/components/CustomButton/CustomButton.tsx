@@ -10,6 +10,7 @@ const CustomButton = ({
     children,
     type="submit",
     fullWidth=false,
+    text='',
     disabled,
   } : ICustomButton) => {
   return (
@@ -22,7 +23,7 @@ const CustomButton = ({
       fullWidth={fullWidth}
       disabled={disabled}
     >
-      { children }
+      { text || children }
     </Button>
   )
 }
