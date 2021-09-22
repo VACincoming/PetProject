@@ -95,7 +95,7 @@ const LoginPage:FC = () => {
                     id="email"
                     key="email"
                     fullWidth
-                    label={t('auth.email')}
+                    label={t('email')}
                     autoComplete="email"
                     value={values.email}
                     as={CustomInput}
@@ -111,7 +111,7 @@ const LoginPage:FC = () => {
                     key="password"
                     required
                     fullWidth
-                    label={t('auth.password')}
+                    label={t('password')}
                     autoComplete="current-password"
                     value={values.password}
                     as={CustomInput}

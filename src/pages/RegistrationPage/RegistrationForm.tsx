@@ -42,7 +42,7 @@ const RegistrationForm: React.FC<any> = () => {
                                         id="email"
                                         key="email"
                                         fullWidth
-                                        label={t("auth.email")}
+                                        label={t("email")}
                                         autoComplete="email"
                                         value={values.email}
                                         as={CustomInput}
@@ -58,7 +58,7 @@ const RegistrationForm: React.FC<any> = () => {
                                         key="password"
                                         required
                                         fullWidth
-                                        label={t("auth.password")}
+                                        label={t("password")}
                                         autoComplete="current-password"
                                         value={values.password}
                                         as={CustomInput}
@@ -74,7 +74,7 @@ const RegistrationForm: React.FC<any> = () => {
                                         type="password"
                                         required
                                         fullWidth
-                                        label={t("auth.repeatPassword")}
+                                        label={t("repeatPassword")}
                                         autoComplete="current-password"
                                         value={values.repeatPassword}
                                         as={CustomInput}
@@ -88,12 +88,12 @@ const RegistrationForm: React.FC<any> = () => {
                                     disabled={isError(errors)}
                                     // className={classes.submit}
                                 >
-                                    {t("auth.signUp")}
+                                    {t("signUp")}
                                 </CustomButton>
                                 <Grid container justify="flex-end">
                                     <Grid item>
                                         <RouterLink to="/login">
-                                            {t("auth.haveAccount")}
+                                            {t("haveAccount")}
                                         </RouterLink>
                                     </Grid>
                                 </Grid>

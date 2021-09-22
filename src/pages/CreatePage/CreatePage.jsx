@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 const CreatePage = () => {
     const classes = useStyles();
-    const { t } = useTranslation(['create']);
+    const { t } = useTranslation();
     return (
         <div data-component="create-page" className={classes.root}>
             <Grid container>
-                <Text tag="h2" title={t('create:create.name')} /> 
+                <Text tag="h2" title={t('create:title')} /> 
                 <Grid xs={12}>
                     <Grid xs={12} md={6} sm={6}>
                         <CustomForm
@@ -45,7 +45,7 @@ const CreatePage = () => {
                                     id="title"
                                     key="title"
                                     fullWidth
-                                    label={t("create.name")}
+                                    label={t("name")}
                                     value={values.title}
                                     as={CustomInput}
                                 />
