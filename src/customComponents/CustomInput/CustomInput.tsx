@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
 import { useField } from "formik";
 // import { ICustomInput } from 'interfaces/ICustomInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -20,10 +20,10 @@ const CustomInput: React.FC<any> = (
 		autoComplete="text",
 		autoFocus=false,
 		type='text',
-		value='',
 		classes='',
 		placeholder='',
 		maxLength="5000",
+        ...props
 	}
 		) => {
 			const [showPassword, setShowPassword] = React.useState(false);
@@ -36,18 +36,16 @@ const CustomInput: React.FC<any> = (
 				if (type === 'password' && !showPassword) {
 					return 'password'
 				}
-				return 'text'
+				return type
 			}
 		return (
-			<TextField
-				inputProps={{
-					maxLength
-				}}
+			<Input
+                multiple={true}
 				variant={variant}
 				margin={margin}
 				required={required}
 				fullWidth={fullWidth}
-				helperText={errorText}
+				helpertext={errorText}
 				error={!!errorText}
 				id={id}
 				placeholder={placeholder}
@@ -56,8 +54,8 @@ const CustomInput: React.FC<any> = (
 				autoFocus={autoFocus}
 				type={getType()}
 				className={classes}
-				InputProps={{
-					endAdornment: type === 'password' ? <InputAdornment position="end">
+				inputProps={{
+					endadornment: type === 'password' ? <InputAdornment position="end">
 						<IconButton
 							aria-label="toggle password visibility"
 							onClick={() => setShowPassword(!showPassword)}
@@ -66,8 +64,10 @@ const CustomInput: React.FC<any> = (
 							{showPassword ? <Visibility /> : <VisibilityOff />}
 						</IconButton>
 				</InputAdornment> : null,
+                maxLength
 				}}
 				{...field}
+                {...props}
 			/>
 		)
 };
