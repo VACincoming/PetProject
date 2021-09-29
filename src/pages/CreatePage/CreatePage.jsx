@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTranslation } from "react-i18next";
 import { Form } from "formik";
@@ -8,8 +8,9 @@ import CustomForm from "customComponents/CustomForm";
 import CustomField from "customComponents/CustomField";
 import CustomTextArea from "customComponents/CustomTextArea";
 import CustomButton from "customComponents/CustomButton";
+import Dropzone from 'react-dropzone';
+import { DropzoneArea } from 'material-ui-dropzone';
 import "./styles.scss";
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -19,11 +20,31 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
+    dropzoneStyles: {
+        width: "100%",
+        height: "auto",
+        borderWidth: 2,
+        borderColor: "rgb(102, 102, 102)",
+        borderStyle: "dashed",
+        borderRadius: 5,
+      }
 }));
+
+const dropzoneStyle = {
+    width: "100%",
+    height: "auto",
+    borderWidth: 2,
+    borderColor: "rgb(102, 102, 102)",
+    borderStyle: "dashed",
+    borderRadius: 5,
+  }
 
 const CreatePage = () => {
     const classes = useStyles();
     const { t } = useTranslation();
+    const [fileNames, setFileNames] = useState([]);
+    const handleDrop = acceptedFiles =>
+    setFileNames(acceptedFiles.map(file => file.name));
     const onSubmit = (values) => {
         let data = new FormData();
         values.files.forEach((photo, index) => {
@@ -32,7 +53,9 @@ const CreatePage = () => {
         });
         console.log('33', values, data);
         // for(let pair of data.entries()) {
-            console.log(`35 ${data.get('photo0').JSON()}`); // key1 = value1, then key2 = value2
+            console.log(`35 ${data.get('photo0')}`); // key1 = value1, then key2 = value2
+            console.log(`36 ${JSON.stringify(data.get('photo0'))}`); // key1 = value1, then key2 = value2
+
         //   }
     };
     const handleImage = (event, setFieldValue) => {
@@ -48,6 +71,7 @@ const CreatePage = () => {
                 <Grid item xs={12}>
                     <Grid item xs={12} md={6} sm={6}>
                         <CustomForm
+
                             initialValues={{
                                 title: "",
                                 description: "",
@@ -57,7 +81,7 @@ const CreatePage = () => {
                             onSubmit={onSubmit}
                         >
                             {({ values, setFieldValue, ...props }) => (
-                                <Form>
+                                <Form className='create-post-form'>
                                     <CustomField
                                         name="title"
                                         id="title"
@@ -84,24 +108,33 @@ const CreatePage = () => {
                                         value={values.files}
                                         type="file"
                                     /> */}
-                                    <label htmlFor="files">
-                                        <CustomField
-                                            accept="image/*"
-                                            id="files"
-                                            multiple={true}
-                                            styles={{display: 'none'}}
-                                            type="file"
-                                            name='files'
-                                            onChange={(e) => handleImage(e, setFieldValue)}
-                                        />
-                                        <CustomButton
-                                            variant="contained"
-                                            component="span"
-                                            onClick={()=>console.log(props)}
-                                        >
-                                            Upload
-                                        </CustomButton>
-                                    </label>
+                                   {/* <Dropzone onDrop={handleDrop} style={dropzoneStyle} className={classes.dropZoneStyles}>
+                                        {({ getRootProps, getInputProps, acceptedFiles, ...props }) => {
+                                            if (acceptedFiles.length === 0) {
+                                                return (<div {...getRootProps({ className: "dropzone" })}>
+                                                        <input {...getInputProps()} />
+                                                        <p>Try dragging a file here!</p>
+                                                    </div>)
+                                            }
+                                            if (acceptedFiles.length !== 0) {
+                                                return (
+                                                    <div {...getRootProps({ className: "dropzone" })}>
+                                                        <input {...getInputProps()} />
+                                                            {acceptedFiles.map((file, i) => (
+                                                                <Thumb key={i} file={file} />
+                                                        ))}
+                                                    </div>
+                                                );
+                                            }
+                                    }}
+                                    </Dropzone> */}
+                                    <DropzoneArea
+                                        acceptedFiles={['image/*']}
+                                        dropzoneText={"Drag and drop an image here or click"}
+                                        onChange={(files) => console.log('Files:', files)}
+                                        filesLimit={10}
+                                        maxFileSize={6000000}
+                                    />
                                     <CustomButton onClick={() => console.log(props)} type="submit">
                                         aaa
                                     </CustomButton>

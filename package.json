@@ -22,6 +22,7 @@
     "create-formik-fields-comparator": "^1.2.0",
     "formik": "^2.2.6",
     "i18next": "^19.8.4",
+    "material-ui-dropzone": "^3.5.0",
     "mime": "^1.6.0",
     "module-alias": "^2.2.2",
     "moment": "^2.29.1",

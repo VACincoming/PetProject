@@ -14,6 +14,8 @@ const CustomField: React.FC<any> = ({
     fullWidth=false,
     label='',
     value='',
+    styles={},
+    className='',
     as=CustomInput,
     ...attributes
 }:any) => {
@@ -27,8 +29,10 @@ const CustomField: React.FC<any> = ({
             id={id}
             key={key}
             fullWidth={fullWidth}
+            className={className}
             label={label}
             value={value}
+            style={styles}
             as={as} 
             {...attributes}
         />

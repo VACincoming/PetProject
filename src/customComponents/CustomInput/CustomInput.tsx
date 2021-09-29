@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import { useField } from "formik";
 // import { ICustomInput } from 'interfaces/ICustomInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -39,7 +39,7 @@ const CustomInput: React.FC<any> = (
 				return type
 			}
 		return (
-			<Input
+			<TextField
                 multiple={true}
 				variant={variant}
 				margin={margin}
