@@ -1,9 +1,9 @@
 .loginFrom {
-  padding: 0 25px;
-  margin-top: 25px;
-  .MuiGrid-item {
-    padding: 8px 0 !important;
-  }
+    padding: 0 25px;
+    margin-top: 25px;
+    .MuiGrid-item {
+        padding: 8px 0 !important;
+    }
 }
 
 .create-post-form {
@@ -16,7 +16,10 @@
     border: 3px dashed #eeeeee;
     background-color: #fafafa;
     color: #bdbdbd;
-  
     margin-bottom: 20px;
-  }
-  
+}
+.create-post-form {
+    & > * {
+        margin: 1rem !important;
+    }
+}
