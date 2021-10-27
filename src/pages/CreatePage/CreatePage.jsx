@@ -4,14 +4,20 @@ import { useTranslation } from "react-i18next";
 import { Form } from "formik";
 import Grid from "@material-ui/core/Grid";
 import Text from "customComponents/CustomText";
+import {
+    Radio,
+    RadioGroup,
+    FormControlLabel,
+    FormControl,
+    FormLabel,
+} from "@material-ui/core";
 import CustomForm from "customComponents/CustomForm";
 import CustomField from "customComponents/CustomField";
 import CustomTextArea from "customComponents/CustomTextArea";
 import CustomButton from "customComponents/CustomButton";
-import Dropzone from "react-dropzone";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./styles.scss";
-import { createPostApi } from "api/post.api";
+import { createPostApi, uploadFilesApi } from "api/post.api";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -45,15 +51,14 @@ const CreatePage = () => {
     const { t } = useTranslation();
     const [fileNames, setFileNames] = useState([]);
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
         let data = new FormData();
         let newValues = values;
         fileNames.forEach((photo, index) => {
             data.append(`photo${index}`, photo);
         });
-        newValues.files = data;
-        createPostApi(newValues);
-        console.log("33", values, data);
+        const res = await createPostApi(newValues);
+        console.log("33", res, values, data);
 
         //   }
     };
@@ -75,6 +80,7 @@ const CreatePage = () => {
                                 description: "",
                                 contactPhone: "4213",
                                 contactEmail: "sd13@mail.ru",
+                                type: "Found",
                                 photos: [],
                             }}
                             onSubmit={onSubmit}
@@ -113,17 +119,34 @@ const CreatePage = () => {
                                         filesLimit={10}
                                         maxFileSize={6000000}
                                     />
-                                    {/* <DropzoneArea
-                                        acceptedFiles={["image/*"]}
-                                        dropzoneText={
-                                            "Drag and drop an image here or click"
-                                        }
-                                        onChange={(files) =>
-                                            console.log("Files:", files)
-                                        }
-                                        filesLimit={10}
-                                        maxFileSize={6000000}
-                                    /> */}
+                                    <FormControl component="fieldset">
+                                        <FormLabel component="legend">
+                                            Selected Option
+                                        </FormLabel>
+                                        <RadioGroup
+                                            name="type"
+                                            value={values.type}
+                                            onChange={(event) => {
+                                                setFieldValue(
+                                                    "type",
+                                                    event.currentTarget.value
+                                                );
+                                            }}
+                                        >
+                                            <FormControlLabel
+                                                value="Found"
+                                                control={<Radio />}
+                                                label="Found"
+                                                name="type"
+                                            />
+                                            <FormControlLabel
+                                                value="Lost"
+                                                control={<Radio />}
+                                                label="Lost"
+                                                name="type"
+                                            />
+                                        </RadioGroup>
+                                    </FormControl>
                                     <CustomButton
                                         onClick={() => console.log(props)}
                                         type="submit"

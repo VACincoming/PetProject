@@ -1,6 +1,6 @@
 import makeRequest from './makeRequest';
 
-const apiUrl = 'https://back-finder.herokuapp.com'
+const apiUrl = `${process.env.REACT_APP_API_URL}`;
 
 const registrationApi = (data) => {
     return makeRequest({

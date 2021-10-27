@@ -1,24 +1,36 @@
 const initialState = {
     user: [],
-    users: [],
     loading: true,
     error: null,
-    schedule: [],
-    userAbsents: [],
-    scheduleTime: [],
-    registry: [],
-    subjects: [],
     language: 'ua'
 };
 
 const reducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
+        case 'FETCH_USER_SUCCESS':
+            return {
+                ...state,
+                user: action.payload,
+                error: null
+            }
+        case 'FETCH_USER_REQUEST':
+            return {
+                ...state,
+                user: [],
+                error: null,
+            }
+        case 'FETCH_USER_ERROR':
+            return {
+                ...state,
+                user: [],
+                error: action.payload,
+            }
         case 'FETCH_LANGUAGE_SUCCESS':
             return {
                 ...state,
                 language: action.payload,
             }
-        default: 
+        default:
             return state
     }
 }

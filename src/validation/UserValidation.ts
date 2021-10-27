@@ -50,5 +50,5 @@ export const loginSchema = yup.object({
   password: yup
     .string()
     .required("This field is required")
-    .min(6, 'Password should be more than 6 characters'),
+    .min(3, 'Password should be more than 6 characters'),
 })
