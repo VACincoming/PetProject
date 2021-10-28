@@ -17,9 +17,9 @@ import { useTranslation } from "react-i18next";
 import { isError } from "helpers/helpers";
 import "./styles.scss";
 import { Link as RouterLink } from "react-router-dom";
-import { loginApi } from "api/auth.api";
-import { loginAction } from "redux/actions";
+import { loginService } from "services/auth.service";
 import { Formik, Field, FastField, Form } from "formik";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LoginPage: FC = () => {
+const LoginPage = ({ onLoginService }) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
@@ -68,9 +68,9 @@ const LoginPage: FC = () => {
                         password: "",
                     }}
                     validationSchema={loginSchema}
-                    onSubmit={async (data, { setErrors }) => {
-                        console.log(data, loginAction);
-                        await loginAction(data);
+                    onSubmit={async (data) => {
+                        let res = await onLoginService(data);
+                        console.log('73', res)
                     }}
                 >
                     {({ values, errors }) => {
@@ -146,4 +146,12 @@ const LoginPage: FC = () => {
     );
 };
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginService: (data) => {
+            dispatch(loginService(data));
+        },
+    };
+};
+
+export default connect(null, mapDispatchToProps)(LoginPage);

@@ -15,6 +15,7 @@ const activationCodeApi = (code) => {
 };
 
 const loginApi = (data) => {
+    console.log('here', data, makeRequest);
     return makeRequest({
         method: 'POST',
         url: `${apiUrl}/login`,

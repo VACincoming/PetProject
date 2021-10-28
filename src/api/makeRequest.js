@@ -20,9 +20,11 @@ const request = ({
         headers,
         params,
         data,
-    }).catch((err) => {
-        throw new Error(err?.response?.data?.message)
-    });
+    })
+        .then(res => res)
+        .catch((err) => {
+            throw new Error(err?.response?.data?.message)
+        });
 }
 
 export default request;
