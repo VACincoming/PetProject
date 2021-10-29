@@ -12,8 +12,9 @@ const request = ({
         headers.authorization = config.token;
     }
     if (localStorage.getItem("authorization")) {
-        headers.authorization = localStorage.getItem("Bearer");
+        headers.authorization = localStorage.getItem("authorization");
     }
+    console.log('17', headers, localStorage.getItem("authorization"));
     return axios({
         url,
         method,

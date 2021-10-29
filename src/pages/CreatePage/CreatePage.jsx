@@ -80,7 +80,7 @@ const CreatePage = () => {
                                 description: "",
                                 contactPhone: "4213",
                                 contactEmail: "sd13@mail.ru",
-                                type: "Found",
+                                type: "FOUND",
                                 photos: [],
                             }}
                             onSubmit={onSubmit}
@@ -134,15 +134,15 @@ const CreatePage = () => {
                                             }}
                                         >
                                             <FormControlLabel
-                                                value="Found"
+                                                value="FOUND"
                                                 control={<Radio />}
-                                                label="Found"
+                                                label="FOUND"
                                                 name="type"
                                             />
                                             <FormControlLabel
-                                                value="Lost"
+                                                value="LOST"
                                                 control={<Radio />}
-                                                label="Lost"
+                                                label="LOST"
                                                 name="type"
                                             />
                                         </RadioGroup>
