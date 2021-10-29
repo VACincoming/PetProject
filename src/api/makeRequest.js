@@ -11,8 +11,8 @@ const request = ({
     if (headers && headers.authorization) {
         headers.authorization = config.token;
     }
-    if (localStorage.getItem("Token")) {
-        headers.Authorization = localStorage.getItem("Token");
+    if (localStorage.getItem("authorization")) {
+        headers.authorization = localStorage.getItem("Bearer");
     }
     return axios({
         url,
@@ -23,7 +23,8 @@ const request = ({
     })
         .then(res => res)
         .catch((err) => {
-            throw new Error(err?.response?.data?.message)
+            console.log(err.message);
+            throw new Error(err.message);
         });
 }
 

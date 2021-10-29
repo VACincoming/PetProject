@@ -14,8 +14,7 @@ const activationCodeApi = (code) => {
     return makeRequest({ url: `${apiUrl}/${code}` });
 };
 
-const loginApi = (data) => {
-    console.log('here', data, makeRequest);
+const loginApi = async (data) => {
     return makeRequest({
         method: 'POST',
         url: `${apiUrl}/login`,

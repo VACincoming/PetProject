@@ -5,12 +5,12 @@ import {
     errorLoginAction
 } from 'redux/actions';
 
-const loginService = (data) => (dispatch) => {
+const loginService = (data) => () => (dispatch) => {
     beforeLoginAction();
     return loginApi(data)
         .then(res => {
             dispatch(loginAction(res.data));
-            return res;
+            return res
         })
         .catch((err) => {
             dispatch(errorLoginAction(err));

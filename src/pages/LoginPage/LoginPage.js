@@ -17,9 +17,14 @@ import { useTranslation } from "react-i18next";
 import { isError } from "helpers/helpers";
 import "./styles.scss";
 import { Link as RouterLink } from "react-router-dom";
-import { loginService } from "services/auth.service";
 import { Formik, Field, FastField, Form } from "formik";
 import { connect } from "react-redux";
+import { loginApi } from 'api/auth.api';
+import {
+    loginAction,
+    beforeLoginAction,
+    errorLoginAction
+} from 'redux/actions';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -41,12 +46,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LoginPage = ({ onLoginService }) => {
+const LoginPage = ({
+    onLoginAction,
+    onBeforeLoginAction,
+    onErrorLoginAction
+}) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
 
-    const handleLogin = () => {
+    const handleLogin = async (data) => {
+        onBeforeLoginAction();
+        try {
+            const login = await loginApi(data);
+            localStorage.setItem('authorization', login.data.token);
+            onLoginAction(login.data);
+            history.push('/');
+        } catch (err) {
+            onErrorLoginAction(err)
+        }
+
         // history.push('/');
     };
     return (
@@ -68,10 +87,7 @@ const LoginPage = ({ onLoginService }) => {
                         password: "",
                     }}
                     validationSchema={loginSchema}
-                    onSubmit={async (data) => {
-                        let res = await onLoginService(data);
-                        console.log('73', res)
-                    }}
+                    onSubmit={async (data) => await handleLogin(data)}
                 >
                     {({ values, errors }) => {
                         return (
@@ -148,9 +164,9 @@ const LoginPage = ({ onLoginService }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLoginService: (data) => {
-            dispatch(loginService(data));
-        },
+        onLoginAction: (data) => dispatch(loginAction(data)),
+        onBeforeLoginAction: () => dispatch(beforeLoginAction()),
+        onErrorLoginAction: () => dispatch(errorLoginAction()),
     };
 };
 
