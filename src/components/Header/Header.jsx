@@ -40,7 +40,7 @@ const Header = ({ user }) => {
                         {user.email[1]}
                     </Avatar>
                 ) : (
-                    <CustomButton text="Login" />
+                    <CustomButton text="Login" onClick={() => history.push("/login")}/>
                 )}
             </div>
         </div>

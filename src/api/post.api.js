@@ -10,6 +10,13 @@ const createPostApi = (data) => {
     })
 };
 
+const getPosts = () => {
+    return makeRequest({
+        url: `${apiUrl}/post`,
+    })
+}
+
 export {
-    createPostApi
+    createPostApi,
+    getPosts
 }

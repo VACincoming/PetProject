@@ -17,7 +17,8 @@ import CustomTextArea from "customComponents/CustomTextArea";
 import CustomButton from "customComponents/CustomButton";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./styles.scss";
-import { createPostApi, uploadFilesApi } from "api/post.api";
+import { createPostApi } from "api/post.api";
+import { uploadFilesApi } from "api/files.api";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -52,13 +53,20 @@ const CreatePage = () => {
     const [fileNames, setFileNames] = useState([]);
 
     const onSubmit = async (values) => {
-        let data = new FormData();
+        let attachments = new FormData();
         let newValues = values;
+        let filesData = {};
         fileNames.forEach((photo, index) => {
-            data.append(`photo${index}`, photo);
+            attachments.append('attachments', photo);
         });
         const res = await createPostApi(newValues);
-        console.log("33", res, values, data);
+        // filesData.entityId = res.data.id;
+        // filesData.type = 'POST_PHOTO';
+        // filesData.attachments = fileNames;
+        console.log(filesData, res, '66')
+        const files = await uploadFilesApi(attachments, res.data.id, 'POST_PHOTO');
+        console.log(files);
+        // console.log("33", res, values, data);
 
         //   }
     };
