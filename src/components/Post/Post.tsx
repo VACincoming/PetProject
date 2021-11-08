@@ -1,19 +1,18 @@
 import React from "react";
-import "./styles.scss";
+import "./index.scss";
 
-const petLink =
-    "https://ichef.bbci.co.uk/news/976/cpsprodpb/1086B/production/_115619676_dog2.jpg";
-
-const Announ = ({
+const Post = ({
     title = "Пропал кот",
     description = "Рыжий кот пропал",
     date = "20/07/2021",
-    contacts = "Vasil Pertovich",
+    contactEmail = "Vasil Pertovich",
+    contactPhone = "+380931235422",
+    photoUrl = "https://ichef.bbci.co.uk/news/976/cpsprodpb/1086B/production/_115619676_dog2.jpg",
 }: any) => {
     return (
         <div data-component="announ">
             <div className="announ-image">
-                <img src={petLink} alt="pet" />
+                <img src={photoUrl} alt="pet" />
             </div>
             <div className="announ-content">
                 <div className="announ-top">
@@ -21,7 +20,8 @@ const Announ = ({
                     <span className="announ-description">{description}</span>
                 </div>
                 <div className="announ-contacts">
-                    <span>{contacts}</span>
+                    <span>{contactEmail}</span>
+                    <span>{contactPhone}</span>
                     <span>{date}</span>
                 </div>
             </div>
@@ -29,4 +29,4 @@ const Announ = ({
     );
 };
 
-export default Announ;
+export default Post;

@@ -57,25 +57,16 @@ const CreatePage = () => {
         let newValues = values;
         let filesData = {};
         fileNames.forEach((photo, index) => {
-            attachments.append('attachments', photo);
+            attachments.append("attachments", photo);
         });
         const res = await createPostApi(newValues);
         // filesData.entityId = res.data.id;
         // filesData.type = 'POST_PHOTO';
         // filesData.attachments = fileNames;
-        console.log(filesData, res, '66')
-        const files = await uploadFilesApi(attachments, res.data.id, 'POST_PHOTO');
-        console.log(files);
-        // console.log("33", res, values, data);
-
+        await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
         //   }
     };
-    const handleImage = (event, setFieldValue) => {
-        const files = event.target.files;
-        let myFiles = Array.from(files);
-        setFieldValue("files", myFiles);
-        console.log(files, myFiles, event.target);
-    };
+
     return (
         <div data-component="create-page" className={classes.root}>
             <Grid container>
@@ -122,7 +113,6 @@ const CreatePage = () => {
                                         }
                                         onChange={(photos) => {
                                             setFileNames(photos);
-                                            console.log("Files:", photos);
                                         }}
                                         filesLimit={10}
                                         maxFileSize={6000000}
@@ -155,10 +145,7 @@ const CreatePage = () => {
                                             />
                                         </RadioGroup>
                                     </FormControl>
-                                    <CustomButton
-                                        onClick={() => console.log(props)}
-                                        type="submit"
-                                    >
+                                    <CustomButton type="submit">
                                         Create Post
                                     </CustomButton>
                                 </Form>

@@ -14,7 +14,6 @@ const request = ({
     if (localStorage.getItem("authorization")) {
         headers.authorization = localStorage.getItem("authorization");
     }
-    console.log('17', headers, localStorage.getItem("authorization"));
     return axios({
         url,
         method,

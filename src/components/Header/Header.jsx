@@ -12,7 +12,6 @@ const Header = ({ user }) => {
     const history = useHistory();
     const { i18n } = useTranslation();
     const changeLanguage = (lang) => {
-        console.log(i18n);
         i18n.changeLanguage(lang);
     };
     return (
@@ -40,7 +39,10 @@ const Header = ({ user }) => {
                         {user.email[1]}
                     </Avatar>
                 ) : (
-                    <CustomButton text="Login" onClick={() => history.push("/login")}/>
+                    <CustomButton
+                        text="Login"
+                        onClick={() => history.push("/login")}
+                    />
                 )}
             </div>
         </div>

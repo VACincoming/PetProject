@@ -2,24 +2,23 @@
 import React, { useEffect } from "react";
 // import { Link } from 'react-router-dom';
 import "./styles.scss";
-import { getPosts } from 'api/post.api';
-import AnnounContainer from "containers/Announ";
-const MainPage = () => {
-    let arr = new Array(10).fill(0);
+import { getPosts } from "api/post.api";
+import PostContainer from "containers/Post";
+import FilterContainer from "containers/Filter";
 
+const MainPage = () => {
     useEffect(async () => {
-        const res = await getPosts();
-        console.log(res);
-    }, [])
+        await getPosts();
+    }, []);
 
     return (
         <div data-component="main-page">
             <div className="announ-wrapper">
-                {arr.map((a, i) => {
-                    return <AnnounContainer key={i} />;
-                })}
+                <PostContainer />
             </div>
-            {/* <Link to='/login'>Login</Link> */}
+            <div className="filter-wrapper">
+                <FilterContainer />
+            </div>
         </div>
     );
 };
