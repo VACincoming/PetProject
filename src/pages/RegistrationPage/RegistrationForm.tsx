@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, FastField, Form } from "formik";
 import { Grid } from "@material-ui/core";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import CustomInput from "customComponents/CustomInput";
 import CustomButton from "customComponents/CustomButton";
@@ -13,6 +13,7 @@ import './styles.scss'
 
 const RegistrationForm: React.FC<any> = () => {
     const { t } = useTranslation();
+    const history = useHistory();
     return (
         <div data-component="registration-form">
             <CustomForm
@@ -23,9 +24,15 @@ const RegistrationForm: React.FC<any> = () => {
                     repeatPassword: "",
                 }}
                 validationSchema={registrationSchema}
-                onSubmit={(data:any) => {
+                onSubmit={async (data:any) => {
                     Reflect.deleteProperty(data, "repeatPassword");
-                    registrationApi(data);
+                    try {
+                      await registrationApi(data);
+                      history.push('/');
+                    } catch (err) {
+                      console.log(err)
+                    }
+
                 }}
             >
                 {({ errors, values }:any) => {
