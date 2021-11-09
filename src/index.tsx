@@ -7,13 +7,14 @@ import store from './redux/store';
 import './i18n';
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Suspense fallback={null}>
       <Provider store={store}>
         <App />
       </Provider>
     </Suspense>
-  </React.StrictMode>,
+  // </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 

@@ -1,23 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React from "react";
 // import { Link } from 'react-router-dom';
 import "./styles.scss";
-import { getPosts } from "api/post.api";
 import PostContainer from "containers/Post";
 import FilterContainer from "containers/Filter";
+import Search from "components/Search";
 
 const MainPage = () => {
-    useEffect(async () => {
-        await getPosts();
-    }, []);
-
     return (
         <div data-component="main-page">
             <div className="announ-wrapper">
                 <PostContainer />
             </div>
             <div className="filter-wrapper">
-                <FilterContainer />
+                <div className="search-wrapper">
+                    <Search />
+                </div>
+                <div className="filter-menu">
+                    <FilterContainer />
+                </div>
             </div>
         </div>
     );

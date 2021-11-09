@@ -8,7 +8,6 @@ const ProtectedRouter = (data) => {
     const { props, user, children, ...rest } = data;
     const role = user?.role;
     function checkAuth(location) {
-        console.log("10", user, role, location);
         // if (role && pagesForUser.includes(location.pathname)) {
         return true;
         // }
