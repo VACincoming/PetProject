@@ -30,13 +30,13 @@ const Header = ({ user }) => {
                         onClick={() => history.push("/create")}
                         classes="header_add-btn"
                     >
-                        {t('create:title')}
+                        {t("create:title")}
                     </CustomButton>
                 )}
                 {user ? (
                     <Avatar alt="Cindy Baker">
-                        {user.email[0]}
-                        {user.email[1]}
+                        {/* {user?.email[0]}
+                        {user?.email[1]} */}
                     </Avatar>
                 ) : (
                     <CustomButton
