@@ -14,7 +14,7 @@ const activationCodeApi = (code) => {
     return makeRequest({ url: `${apiUrl}/${code}` });
 };
 
-const loginApi = async (data) => {
+const loginApi = (data) => {
     return makeRequest({
         method: 'POST',
         url: `${apiUrl}/login`,
@@ -22,8 +22,16 @@ const loginApi = async (data) => {
     })
 };
 
+const getUserApi = () => {
+    return makeRequest({
+        method: 'GET',
+        url: `${apiUrl}/users/me`
+    })
+}
+
 export {
     registrationApi,
     loginApi,
-    activationCodeApi
+    activationCodeApi,
+    getUserApi
 }

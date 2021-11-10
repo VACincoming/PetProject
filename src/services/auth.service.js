@@ -18,5 +18,5 @@ const loginService = (data) => () => (dispatch) => {
 }
 
 export {
-    loginService
+    loginService,
 }

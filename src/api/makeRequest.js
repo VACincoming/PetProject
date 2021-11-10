@@ -22,10 +22,10 @@ const request = ({
         data,
     })
         .then(res => res)
-        .catch((err) => {
-            console.log(err.message);
-            throw new Error(err.message);
-        });
+    // .catch((err) => {
+    //     console.log(err.message);
+    //     throw new Error(err.message);
+    // });
 }
 
 export default request;

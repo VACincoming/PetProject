@@ -11,19 +11,22 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload,
-                error: null
+                error: null,
+                loading: false
             }
         case 'FETCH_USER_REQUEST':
             return {
                 ...state,
-                user: [],
+                user: null,
                 error: null,
+                loading: true,
             }
         case 'FETCH_USER_ERROR':
             return {
                 ...state,
-                user: [],
+                user: null,
                 error: action.payload,
+                loading: false
             }
         case 'FETCH_LANGUAGE_SUCCESS':
             return {
