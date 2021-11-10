@@ -38,15 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const dropzoneStyle = {
-    width: "100%",
-    height: "auto",
-    borderWidth: 2,
-    borderColor: "rgb(102, 102, 102)",
-    borderStyle: "dashed",
-    borderRadius: 5,
-};
-
 const CreatePage = () => {
     const classes = useStyles();
     const { t } = useTranslation();
@@ -55,23 +46,18 @@ const CreatePage = () => {
     const onSubmit = async (values) => {
         let attachments = new FormData();
         let newValues = values;
-        let filesData = {};
-        fileNames.forEach((photo, index) => {
+        fileNames.forEach((photo) => {
             attachments.append("attachments", photo);
         });
         const res = await createPostApi(newValues);
-        // filesData.entityId = res.data.id;
-        // filesData.type = 'POST_PHOTO';
-        // filesData.attachments = fileNames;
         await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
-        //   }
     };
 
     return (
         <div data-component="create-page" className={classes.root}>
             <Grid container>
-                <Text tag="h2" title={t("create:title")} />
-                <Grid item xs={12}>
+                <Text tag="h2" className="create-title" title={t("create:title")} />
+                <Grid item xs={12} className="create-wrapper">
                     <Grid item xs={12} md={6} sm={6}>
                         <CustomForm
                             initialValues={{
@@ -84,7 +70,7 @@ const CreatePage = () => {
                             }}
                             onSubmit={onSubmit}
                         >
-                            {({ values, setFieldValue, ...props }) => (
+                            {({ values, setFieldValue }) => (
                                 <Form className="create-post-form">
                                     <CustomField
                                         name="title"
@@ -108,9 +94,9 @@ const CreatePage = () => {
                                         id="photos"
                                         value={values.photos}
                                         as={DropzoneArea}
-                                        dropzoneText={
-                                            "Drag and drop an image here or click"
-                                        }
+                                        // dropzoneText={
+                                        //     "Drag and drop an image here or click"
+                                        // }
                                         onChange={(photos) => {
                                             setFileNames(photos);
                                         }}
@@ -146,7 +132,7 @@ const CreatePage = () => {
                                         </RadioGroup>
                                     </FormControl>
                                     <CustomButton type="submit">
-                                        Create Post
+                                        {t("create:title")}
                                     </CustomButton>
                                 </Form>
                             )}

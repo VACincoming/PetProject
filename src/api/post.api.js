@@ -12,7 +12,7 @@ const createPostApi = (data) => {
 
 const getPosts = () => {
     return makeRequest({
-        url: `${apiUrl}/post`,
+        url: `${apiUrl}/posts`,
     })
 }
 

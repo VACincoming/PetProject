@@ -3,5 +3,7 @@
     "name": "Title",
     "description": "Description",
     "photo": "Photo",
-    "phone": "Phone number"
+    "phone": "Phone number",
+    "dragAndDrop": "Drag and drop an image here or click",
+    "selectOption": ""
   }

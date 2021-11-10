@@ -1,3 +1,5 @@
+@import "../../styles/index.scss";
+
 .loginFrom {
     padding: 0 25px;
     margin-top: 25px;
@@ -21,5 +23,17 @@
 .create-post-form {
     & > * {
         margin: 1rem !important;
+    }
+}
+[data-component='create-page'] {
+    padding: 1rem;
+    min-height: 90vh;
+    background: $main-background;
+    
+    .create-title {
+        padding-left: 1rem;
+    }
+    .create-wrapper {
+        background-color: #fafafa;
     }
 }

@@ -9,7 +9,6 @@ const PostContainer = () => {
         const res = await getPosts();
         setPosts(res.data);
     }, []);
-
     return (
         <>
             {posts?.map((post) => {
@@ -17,11 +16,12 @@ const PostContainer = () => {
                     <Post
                         title={post.title}
                         description={post.description}
-                        date={post.date}
+                        createdAt={post.createdAt}
                         contactEmail={post.contactEmail}
                         contactPhone={post.contactPhone}
-                        photoUrl={post.link}
+                        photoUrl={post.photos[0]}
                         key={post.id}
+                        type={post.type}
                     />
                 );
             })}

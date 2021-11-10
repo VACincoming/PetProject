@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 const Header = ({ user }) => {
     const history = useHistory();
-    const { i18n } = useTranslation();
+    const { i18n, t } = useTranslation();
     const changeLanguage = (lang) => {
         i18n.changeLanguage(lang);
     };
@@ -30,7 +30,7 @@ const Header = ({ user }) => {
                         onClick={() => history.push("/create")}
                         classes="header_add-btn"
                     >
-                        ADD AN ADD
+                        {t('create:title')}
                     </CustomButton>
                 )}
                 {user ? (
@@ -40,7 +40,7 @@ const Header = ({ user }) => {
                     </Avatar>
                 ) : (
                     <CustomButton
-                        text="Login"
+                        text={t("auth:login")}
                         onClick={() => history.push("/login")}
                     />
                 )}
