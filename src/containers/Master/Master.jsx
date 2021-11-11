@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import Header from "components/Header";
+import Loader from "components/Loader";
 import Routers from "pages/Routers";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
@@ -36,7 +37,7 @@ const Master = ({
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <Loader />
             ) : (
                 <>
                     {isNeedHeader()}

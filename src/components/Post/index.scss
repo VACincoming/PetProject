@@ -26,7 +26,7 @@
         max-width: 100%;
 
         @include breakpoint(mobile_landscape) {
-            max-width: 35%;
+            width: 35%;
         }
         img {
             object-fit: cover;

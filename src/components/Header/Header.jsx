@@ -7,6 +7,8 @@ import Logo from "static/img/logo.png";
 import "./styles.scss";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 const Header = ({ user }) => {
     const history = useHistory();
@@ -15,36 +17,52 @@ const Header = ({ user }) => {
         i18n.changeLanguage(lang);
     };
     return (
-        <div className="header">
-            <div className="header_logo" onClick={() => history.push("/")}>
-                <img src={Logo} alt="Find Pet" />
-            </div>
-            <div className="header_menu-wrapper">
-                <CustomButton classes="header_favorites-btn">
-                    <StarIcon height="30px" width="30px" />
-                </CustomButton>
-                <CustomButton text="en" onClick={() => changeLanguage("en")} />
-                <CustomButton text="ru" onClick={() => changeLanguage("ru")} />
-                {user && (
-                    <CustomButton
-                        onClick={() => history.push("/create")}
-                        classes="header_add-btn"
-                    >
-                        {t("create:title")}
+        <div>
+            <Grid
+                className="header"
+                alignContent="center"
+                justifyContent="space-between"
+            >
+                <Grid
+                    xs={3}
+                    className="header_logo"
+                    onClick={() => history.push("/")}
+                >
+                    <img src={Logo} alt="Find Pet" />
+                </Grid>
+                <Grid xs={5} className="header_menu-wrapper">
+                    <CustomButton classes="header_favorites-btn">
+                        <StarIcon height="30px" width="30px" />
                     </CustomButton>
-                )}
-                {user ? (
-                    <Avatar alt="Cindy Baker">
-                        {/* {user?.email[0]}
-                        {user?.email[1]} */}
-                    </Avatar>
-                ) : (
                     <CustomButton
-                        text={t("auth:login")}
-                        onClick={() => history.push("/login")}
+                        text="en"
+                        onClick={() => changeLanguage("en")}
                     />
-                )}
-            </div>
+                    <CustomButton
+                        text="ru"
+                        onClick={() => changeLanguage("ru")}
+                    />
+                    {user && (
+                        <CustomButton
+                            onClick={() => history.push("/create")}
+                            classes="header_add-btn"
+                        >
+                            {t("create:title")}
+                        </CustomButton>
+                    )}
+                    {user ? (
+                        <Avatar alt="Cindy Baker">
+                            {/* {user?.email[0]}
+                            {user?.email[1]} */}
+                        </Avatar>
+                    ) : (
+                        <CustomButton
+                            text={t("auth:login")}
+                            onClick={() => history.push("/login")}
+                        />
+                    )}
+                </Grid>
+            </Grid>
         </div>
     );
 };
