@@ -1,43 +1,45 @@
 @import "styles/_variables.scss";
 
 .header {
-  background: $header-color;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &_logo {
-    font-size: $big-fz;
-    text-transform: uppercase;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-    height: 100%;
-
-    img {
-      height: 100%;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  &_menu-wrapper {
+    background: $header-color;
+    width: 100%;
+    height: 100px;
     display: flex;
     align-items: center;
-    margin-right: 2rem;
-
-    .header_favorites-btn{
-      border: none; 
+    justify-content: space-between;
+    &_container {
+        height: 100%;
+        display: flex;
     }
-  
-    .header_add-btn {
-      margin-left: 2rem;
-      margin-right: 2rem;
+    &_wrapper {
+        height: 100%;
+        display: flex;
     }
-  }
+    &_logo {
+        font-size: $big-fz;
+        text-transform: uppercase;
+        height: 100%;
 
+        img {
+            height: 100%;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &_menu-wrapper {
+        display: flex;
+        align-items: center;
+
+        .header_favorites-btn {
+            border: none;
+        }
+
+        .header_add-btn {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+    }
 }
-
