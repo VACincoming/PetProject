@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { TextareaAutosize } from '@material-ui/core';
+import { TextareaAutosize } from '@mui/material';
 import { useField } from "formik";
 
 const CustomTextArea = memo((

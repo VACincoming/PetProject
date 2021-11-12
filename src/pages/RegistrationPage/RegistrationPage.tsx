@@ -1,10 +1,10 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import PetsIcon from '@material-ui/icons/Pets';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Avatar from '@mui/material/Avatar';
+import CssBaseline from '@mui/material/CssBaseline';
+import PetsIcon from '@mui/icons-material/Pets';
+import Typography from '@mui/material/Typography';
+import makeStyles from '@mui/styles/makeStyles';
+import Container from '@mui/material/Container';
 // import { IRegistrationData } from 'interfaces/IRegistration';
 import RegistrationForm from './RegistrationForm';
 

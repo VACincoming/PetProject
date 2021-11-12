@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import { useTranslation } from "react-i18next";
 import { Form } from "formik";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import Text from "customComponents/CustomText";
 import {
     Radio,
@@ -10,7 +10,7 @@ import {
     FormControlLabel,
     FormControl,
     FormLabel,
-} from "@material-ui/core";
+} from "@mui/material";
 import CustomForm from "customComponents/CustomForm";
 import CustomField from "customComponents/CustomField";
 import CustomTextArea from "customComponents/CustomTextArea";

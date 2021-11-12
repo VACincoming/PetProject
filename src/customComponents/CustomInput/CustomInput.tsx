@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { useField } from "formik";
 // import { ICustomInput } from 'interfaces/ICustomInput';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
 // import createFormikFieldsComporator from 'create-formik-fields-comparator';
 
 const CustomInput: React.FC<any> = (
@@ -39,7 +39,7 @@ const CustomInput: React.FC<any> = (
 				return type
 			}
 		return (
-			<TextField
+            <TextField
                 multiple={true}
 				variant={variant}
 				margin={margin}
@@ -57,10 +57,10 @@ const CustomInput: React.FC<any> = (
 				inputProps={{
 					endadornment: type === 'password' ? <InputAdornment position="end">
 						<IconButton
-							aria-label="toggle password visibility"
-							onClick={() => setShowPassword(!showPassword)}
-							onMouseDown={handleMouseDownPassword}
-						>
+                            aria-label="toggle password visibility"
+                            onClick={() => setShowPassword(!showPassword)}
+                            onMouseDown={handleMouseDownPassword}
+                            size="large">
 							{showPassword ? <Visibility /> : <VisibilityOff />}
 						</IconButton>
 				</InputAdornment> : null,
@@ -69,7 +69,7 @@ const CustomInput: React.FC<any> = (
 				{...field}
                 {...props}
 			/>
-		)
+        );
 };
 
 export default memo(CustomInput);

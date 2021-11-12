@@ -1,14 +1,14 @@
 import React from "react";
 import StarIcon from "static/icons/StarIcon";
 import CustomButton from "customComponents/CustomButton";
-import Avatar from "@material-ui/core/Avatar";
+import Avatar from "@mui/material/Avatar";
 import { useHistory } from "react-router-dom";
 import Logo from "static/img/logo.png";
 import "./styles.scss";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 import Dropdown from "components/Dropdown";
 const Header = ({ user }) => {
     const history = useHistory();

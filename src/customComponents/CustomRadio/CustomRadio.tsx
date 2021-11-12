@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Radio,
   FormControlLabel,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useField, FieldAttributes } from "formik";
 
 type MyRadioProps = { label: string } & FieldAttributes<{}>;
