@@ -28,21 +28,23 @@ import {
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        // marginTop: theme.spacing(8),
+        marginTop: "8rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
     },
     avatar: {
-        margin: theme.spacing(1),
+        // margin: theme.spacing(1),
+        margin: '.5rem',
         backgroundColor: "#16697a",
     },
     form: {
         width: "100%", // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: '1rem',
     },
     submit: {
-        margin: theme.spacing(1, 0, 1),
+        margin: '1rem 0 1rem',
     },
 }));
 
@@ -76,9 +78,7 @@ const LoginPage = ({
                     <PetsIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    <i>
-                        Sign in <b> {ProjectName} </b>
-                    </i>
+                    Sign in <b> {ProjectName} </b>
                 </Typography>
                 <Formik
                     validateOnChange
@@ -147,8 +147,13 @@ const LoginPage = ({
                                     </CustomButton>
                                     <Grid container>
                                         <Grid item xs>
-                                            <RouterLink to="/registration">
+                                            <RouterLink to="/forgot-password" style={{ fontSize: '.8rem' }}>
                                                 {t("Forgot password")}
+                                            </RouterLink>
+                                        </Grid>
+                                        <Grid item>
+                                            <RouterLink to="/registration" variant="body2" style={{ fontSize: '.8rem' }}>
+                                                {"Don't have an account? Sign Up"}
                                             </RouterLink>
                                         </Grid>
                                     </Grid>

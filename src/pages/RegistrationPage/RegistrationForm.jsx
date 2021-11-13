@@ -9,107 +9,106 @@ import CustomForm from "customComponents/CustomForm";
 import { registrationSchema } from "validation/UserValidation";
 import { isError } from "helpers/helpers";
 import { registrationApi } from "api/auth.api";
-import './styles.scss'
+import "./styles.scss";
 
-const RegistrationForm: React.FC<any> = () => {
+const RegistrationForm = () => {
     const { t } = useTranslation();
     const history = useHistory();
     return (
-      <div data-component="registration-form">
-          <CustomForm
-              validateOnChange
-              initialValues={{
-                  email: "",
-                  password: "",
-                  repeatPassword: "",
-              }}
-              validationSchema={registrationSchema}
-              onSubmit={async (data:any) => {
-                  Reflect.deleteProperty(data, "repeatPassword");
-                  try {
-                    await registrationApi(data);
-                    history.push('/');
-                  } catch (err) {
-                    console.log(err)
-                  }
-
-              }}
-          >
-              {({ errors, values }:any) => {
-                  return (
-                    <Form>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12}>
-                                <Field
-                                    variant="outlined"
-                                    name="email"
-                                    margin="none"
-                                    type="text"
-                                    required
-                                    id="email"
-                                    key="email"
+        <div data-component="registration-form">
+            <CustomForm
+                validateOnChange
+                initialValues={{
+                    email: "",
+                    password: "",
+                    repeatPassword: "",
+                }}
+                validationSchema={registrationSchema}
+                onSubmit={async (data) => {
+                    Reflect.deleteProperty(data, "repeatPassword");
+                    try {
+                        await registrationApi(data);
+                        history.push("/");
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }}
+            >
+                {({ errors, values }) => {
+                    return (
+                        <Form>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}>
+                                    <Field
+                                        variant="outlined"
+                                        name="email"
+                                        margin="none"
+                                        type="text"
+                                        required
+                                        id="email"
+                                        key="email"
+                                        fullWidth
+                                        label={t("email")}
+                                        autoComplete="email"
+                                        value={values.email}
+                                        as={CustomInput}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FastField
+                                        variant="outlined"
+                                        name="password"
+                                        margin="none"
+                                        type="password"
+                                        id="password"
+                                        key="password"
+                                        required
+                                        fullWidth
+                                        label={t("password")}
+                                        autoComplete="current-password"
+                                        value={values.password}
+                                        as={CustomInput}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FastField
+                                        variant="outlined"
+                                        name="repeatPassword"
+                                        margin="none"
+                                        id="repeatPassword"
+                                        key="repeatPassword"
+                                        type="password"
+                                        required
+                                        fullWidth
+                                        label={t("repeatPassword")}
+                                        autoComplete="current-password"
+                                        value={values.repeatPassword}
+                                        as={CustomInput}
+                                    />
+                                </Grid>
+                                <CustomButton
+                                    type="submit"
                                     fullWidth
-                                    label={t("email")}
-                                    autoComplete="email"
-                                    value={values.email}
-                                    as={CustomInput}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <FastField
-                                    variant="outlined"
-                                    name="password"
-                                    margin="none"
-                                    type="password"
-                                    id="password"
-                                    key="password"
-                                    required
-                                    fullWidth
-                                    label={t("password")}
-                                    autoComplete="current-password"
-                                    value={values.password}
-                                    as={CustomInput}
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <FastField
-                                    variant="outlined"
-                                    name="repeatPassword"
-                                    margin="none"
-                                    id="repeatPassword"
-                                    key="repeatPassword"
-                                    type="password"
-                                    required
-                                    fullWidth
-                                    label={t("repeatPassword")}
-                                    autoComplete="current-password"
-                                    value={values.repeatPassword}
-                                    as={CustomInput}
-                                />
-                            </Grid>
-                            <CustomButton
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                disabled={isError(errors)}
-                                // className={classes.submit}
-                            >
-                                {t("signUp")}
-                            </CustomButton>
-                            <Grid container justifyContent="flex-end">
-                                <Grid item>
-                                    <RouterLink to="/login">
-                                        {t("haveAccount")}
-                                    </RouterLink>
+                                    variant="contained"
+                                    color="primary"
+                                    disabled={isError(errors)}
+                                    classes="signup-btn"
+                                >
+                                    {t("signUp")}
+                                </CustomButton>
+                                <Grid container justifyContent="flex-end">
+                                    <Grid item>
+                                        <RouterLink to="/login">
+                                            {t("haveAccount")}
+                                        </RouterLink>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                    </Form>
-                  );
-              }}
-              </CustomForm>
-      </div>
+                        </Form>
+                    );
+                }}
+            </CustomForm>
+        </div>
     );
 };
 

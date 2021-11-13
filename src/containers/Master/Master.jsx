@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Header from "components/Header";
 import Loader from "components/Loader";
+import Filters from "components/Filters";
 import Routers from "pages/Routers";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
@@ -25,6 +26,11 @@ const Master = ({
         }
         return null;
     };
+    const isNeedFilters = () => {
+        if (pathname === "/") {
+            return <Filters />;
+        }
+    };
     useEffect(async () => {
         onBeforeLoginAction();
         try {
@@ -41,6 +47,7 @@ const Master = ({
             ) : (
                 <>
                     {isNeedHeader()}
+                    {isNeedFilters()}
                     <Routers />
                 </>
             )}

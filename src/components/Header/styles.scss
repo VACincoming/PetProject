@@ -7,6 +7,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &_create-btn {
+        background-color: #ff5100 !important;
+    }
     &_container {
         height: 100%;
         display: flex;

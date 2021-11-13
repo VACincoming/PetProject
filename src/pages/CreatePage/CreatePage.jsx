@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from "@mui/styles/makeStyles";
 import { useTranslation } from "react-i18next";
 import { Form } from "formik";
 import Grid from "@mui/material/Grid";
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         textAlign: "center",
         color: theme.palette.text.secondary,
     },
@@ -56,7 +56,11 @@ const CreatePage = () => {
     return (
         <div data-component="create-page" className={classes.root}>
             <Grid container>
-                <Text tag="h2" className="create-title" title={t("create:title")} />
+                <Text
+                    tag="h2"
+                    className="create-title"
+                    title={t("create:title")}
+                />
                 <Grid item xs={12} className="create-wrapper">
                     <Grid item xs={12} md={6} sm={6}>
                         <CustomForm

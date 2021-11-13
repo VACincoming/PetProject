@@ -4,29 +4,44 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
-export default function Dropdown() {
+export default function Dropdown({ activeItem, items, handleClick }) {
+    const handleOnClick = (value, popupState) => {
+        handleClick(value);
+        popupState.close();
+    };
+    let image = items.find((item) => item.name === activeItem).img;
     return (
         <PopupState variant="popover" popupId="demo-popup-menu">
             {(popupState) => {
-                console.log(popupState);
                 return (
                     <>
                         <Button
-                            variant="contained"
+                            variant="text"
+                            onClick={handleClick}
                             {...bindTrigger(popupState)}
                         >
-                            Dashboard
+                            <img
+                                src={image}
+                                alt={activeItem}
+                                style={{ marginRight: "1rem" }}
+                            />
+                            {activeItem}
                         </Button>
                         <Menu {...bindMenu(popupState)}>
-                            <MenuItem onClick={popupState.close}>
-                                Profile
-                            </MenuItem>
-                            <MenuItem onClick={popupState.close}>
-                                My account
-                            </MenuItem>
-                            <MenuItem onClick={popupState.close}>
-                                Logout
-                            </MenuItem>
+                            {items.map((item) => (
+                                <MenuItem
+                                    onClick={() =>
+                                        handleOnClick(item.name, popupState)
+                                    }
+                                >
+                                    <img
+                                        src={item.img}
+                                        alt={item.name}
+                                        style={{ marginRight: "1rem" }}
+                                    />
+                                    {item.name.toUpperCase()}
+                                </MenuItem>
+                            ))}
                         </Menu>
                     </>
                 );
