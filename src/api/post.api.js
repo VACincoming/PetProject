@@ -16,7 +16,14 @@ const getPosts = () => {
     })
 }
 
+const getLastPosts = () => {
+    return makeRequest({
+        url: `${apiUrl}/posts/last-ten`
+    })
+}
+
 export {
+    getLastPosts,
     createPostApi,
     getPosts
 }
