@@ -1,3 +1,16 @@
-.search-input {
+.search-form {
     display: flex;
+}
+
+.search-input {
+    width: 600px;
+    margin-right: 1.5rem;
+}
+
+.search-btn {
+    margin-left: 1.5rem !important;
+}
+
+.search-icon {
+    margin-left: 1rem;
 }

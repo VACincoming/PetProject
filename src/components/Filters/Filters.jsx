@@ -8,9 +8,9 @@ const Filters = () => {
             <div className="search-wrapper">
                 <Search />
             </div>
-            <div className="filter-menu">
+            {/* <div className="filter-menu">
                 <FilterContainer />
-            </div>
+            </div> */}
         </div>
     );
 };

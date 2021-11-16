@@ -8,7 +8,7 @@ export default function Loader() {
             sx={{
                 display: "flex",
                 justifyContent: "center",
-                alignItem: "center",
+                alignItems: "center",
                 height: "100vh",
             }}
         >

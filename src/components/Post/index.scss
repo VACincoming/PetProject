@@ -22,6 +22,16 @@
         min-height: 15rem;
     }
 
+    .announ-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* number of lines to show */
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        line-height: 1.5;
+    }
+
     .announ-image {
         max-width: 100%;
 
@@ -51,15 +61,19 @@
         }
 
         .announ-contacts {
+            @include breakpoint(mobile) {
+                flex-direction: row;
+            }
             width: 100%;
             display: flex;
             justify-content: space-between;
             flex-direction: column;
-            align-items: center;
-
-            @include breakpoint(mobile_landscape) {
-                flex-direction: row;
-            }
+            // align-items: center;
         }
+    }
+    .announ-bottom-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

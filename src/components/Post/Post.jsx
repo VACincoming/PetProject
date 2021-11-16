@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 
 const Post = ({
     title = "Пропал кот",
     description = "Рыжий кот пропал",
-    type='found',
+    type = "found",
     createdAt = "20/07/2021",
     contactEmail = "Vasil Pertovich",
     contactPhone = "+380931235422",
@@ -13,6 +13,14 @@ const Post = ({
     const date = createdAt?.split(" ")[0];
     let time = createdAt?.split(" ")[1];
     time = time?.replace(/-/g, ":");
+    const [typeAnn, setTypeAnn] = useState(type);
+    useEffect(() => {
+        if (type === "found") {
+            setTypeAnn("Знайдено");
+            return;
+        }
+        setTypeAnn("Втрачено");
+    }, []);
     return (
         <div data-component="announ">
             <div className="announ-image">
@@ -21,15 +29,18 @@ const Post = ({
             <div className="announ-content">
                 <div className="announ-top">
                     <h3 className="announ-title">{title}</h3>
-                    <h4 className="announ-type">{type}</h4>
                     <span className="announ-description">{description}</span>
                 </div>
                 <div className="announ-contacts">
-                    <span>{contactEmail}</span>
-                    <span>{contactPhone}</span>
+                    <h4 style={{ marginBottom: "0.5rem" }}>Contacts</h4>
+                    <p>{contactEmail}</p>
+                    <p>{contactPhone}</p>
+                </div>
+                <div className="announ-bottom-info">
+                    <h4 className="announ-type">{typeAnn}</h4>
                     <div className="announ-date">
                         <div>{date}</div>
-                        <div>{time}</div>
+                        {/* <div>{time}</div> */}
                     </div>
                 </div>
             </div>
