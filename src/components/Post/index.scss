@@ -4,6 +4,7 @@
     min-width: 100%;
 
     @include breakpoint(desktop) {
+        width: 75%;
         min-width: 75%;
     }
 }
@@ -13,6 +14,7 @@
     margin-bottom: 1rem;
     display: block;
     border-radius: 5px;
+    height: 200px;
 
     @include breakpoint(mobile_landscape) {
         flex-direction: row;
@@ -34,9 +36,8 @@
 
     .announ-image {
         max-width: 100%;
-
         @include breakpoint(mobile_landscape) {
-            width: 35%;
+            width: 300px;
         }
         img {
             object-fit: cover;

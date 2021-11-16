@@ -22,7 +22,14 @@ const getLastPosts = () => {
     })
 }
 
+const searchPosts = (searchString) => {
+    return makeRequest({
+        url: `${apiUrl}/posts/search?searchString=${searchString}`
+    })
+}
+
 export {
+    searchPosts,
     getLastPosts,
     createPostApi,
     getPosts
