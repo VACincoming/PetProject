@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Post from "components/Post";
-import { getPosts } from "api/post.api";
+// import { getPosts } from "api/post.api";
+import { getPostsService } from "services/posts.service";
+import { connect } from "react-redux";
 
-const PostContainer = () => {
-    const [posts, setPosts] = useState();
+const PostContainer = ({ posts }) => {
+    // const [posts, setPosts] = useState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
-        const res = await getPosts();
-        setPosts(res.data);
+        await getPostsService();
+        console.log(getPostsService);
     }, []);
     return (
         <>
@@ -29,4 +31,20 @@ const PostContainer = () => {
     );
 };
 
-export default PostContainer;
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const { journalService } = ownProps;
+    return bindActionCreators(
+        {
+            fetchRegistry: fetchRegistry(journalService),
+        },
+        dispatch
+    );
+};
+
+const mapStateToProps = (state) => {
+    return {
+        posts: state.posts,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);

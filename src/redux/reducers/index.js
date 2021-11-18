@@ -1,40 +1,8 @@
-const initialState = {
-    user: null,
-    loading: true,
-    error: null,
-    language: 'ua'
-};
+import { combineReducers } from 'redux';
+import posts from './posts';
+import user from './user';
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'FETCH_USER_SUCCESS':
-            return {
-                ...state,
-                user: action.payload,
-                error: null,
-                loading: false
-            }
-        case 'FETCH_USER_REQUEST':
-            return {
-                ...state,
-                user: null,
-                error: null,
-                loading: true,
-            }
-        case 'FETCH_USER_ERROR':
-            return {
-                ...state,
-                user: null,
-                error: action.payload,
-                loading: false
-            }
-        case 'FETCH_LANGUAGE_SUCCESS':
-            return {
-                ...state,
-                language: action.payload,
-            }
-        default:
-            return state
-    }
-}
-export default reducer;
+export default combineReducers({
+    user,
+    posts
+});

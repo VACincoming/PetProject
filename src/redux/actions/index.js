@@ -12,8 +12,26 @@ const errorLoginAction = (data) => ({
     payload: data
 });
 
+const getPostsAction = (data) => ({
+    type: 'FETCH_USER_SUCCESS',
+    payload: data
+});
+
+const beforeGetPostsAction = () => ({
+    type: 'FETCH_USER_REQUEST'
+});
+
+const errorGetPostsAction = (data) => ({
+    type: 'FETCH_USER_ERROR',
+    payload: data
+});
+
+
 export {
     loginAction,
     beforeLoginAction,
-    errorLoginAction
+    errorLoginAction,
+    getPostsAction,
+    beforeGetPostsAction,
+    errorGetPostsAction
 }
