@@ -6,19 +6,9 @@ import Filters from "components/Filters";
 import Routers from "pages/Routers";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUserApi } from "api/auth.api";
-import {
-    loginAction,
-    beforeLoginAction,
-    errorLoginAction,
-} from "redux/actions";
+import UserActions from "redux/actions/UserActions";
 
-const Master = ({
-    onLoginAction,
-    onBeforeLoginAction,
-    onErrorLoginAction,
-    loading,
-}) => {
+const Master = ({ getUser, user, loading }) => {
     const pathname = useLocation().pathname;
     const isNeedHeader = () => {
         if (pathname !== "/login" && pathname !== "/registration") {
@@ -31,18 +21,12 @@ const Master = ({
             return <Filters />;
         }
     };
-    useEffect(async () => {
-        onBeforeLoginAction();
-        try {
-            const user = await await getUserApi();
-            onLoginAction(user.data);
-        } catch (err) {
-            onErrorLoginAction(err);
-        }
+    useEffect(() => {
+        user?.id && getUser();
     }, []);
     return (
         <>
-            {loading ? (
+            {!loading ? (
                 <Loader />
             ) : (
                 <>
@@ -57,15 +41,14 @@ const Master = ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLoginAction: (data) => dispatch(loginAction(data)),
-        onBeforeLoginAction: () => dispatch(beforeLoginAction()),
-        onErrorLoginAction: () => dispatch(errorLoginAction()),
+        getUser: () => dispatch(UserActions.getUser()),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.loading,
+        user: state.user.user,
+        loading: state.user.loading,
     };
 };
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from 'react-router-dom';
 import "./styles.scss";
-import { getLastPosts } from "api/post.api";
+import { getLastPosts } from "api/posts.api";
 import PostContainer from "containers/Post";
 import LastPosts from "components/LastPosts";
 

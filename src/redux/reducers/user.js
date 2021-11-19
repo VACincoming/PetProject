@@ -1,12 +1,9 @@
-const initialState = {
+const UserReducer = (state = {
     user: null,
     loading: true,
     error: null,
-    posts: [],
     language: 'ua'
-};
-
-const UserReducer = (state = initialState, action) => {
+}, action) => {
     switch (action.type) {
         case 'FETCH_USER_SUCCESS':
             return {
@@ -29,27 +26,6 @@ const UserReducer = (state = initialState, action) => {
                 error: action.payload,
                 loading: false
             }
-        case 'FETCH_POSTS_SUCCESS':
-            return {
-                ...state,
-                posts: action.payload,
-                error: null,
-                loading: false,
-            }
-        case 'FETCH_POSTS_REQUEST':
-            return {
-                ...state,
-                posts: null,
-                error: null,
-                loading: true,
-            }
-        case 'FETCH_POSTS_ERROR':
-            return {
-                ...state,
-                posts: null,
-                error: action.payload,
-                loading: false
-            }
         case 'FETCH_LANGUAGE_SUCCESS':
             return {
                 ...state,
@@ -59,4 +35,4 @@ const UserReducer = (state = initialState, action) => {
             return state
     }
 }
-export default reducer;
+export default UserReducer;

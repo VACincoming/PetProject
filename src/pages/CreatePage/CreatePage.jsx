@@ -17,7 +17,7 @@ import CustomTextArea from "customComponents/CustomTextArea";
 import CustomButton from "customComponents/CustomButton";
 import { DropzoneArea } from "material-ui-dropzone";
 import "./styles.scss";
-import { createPostApi } from "api/post.api";
+import { createPostApi } from "api/posts.api";
 import { uploadFilesApi } from "api/files.api";
 const useStyles = makeStyles((theme) => ({
     root: {

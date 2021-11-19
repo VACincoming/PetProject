@@ -1,4 +1,4 @@
-import { getPosts, searchPosts } from 'api/post.api';
+import { getPosts, searchPosts } from 'api/posts.api';
 import {
     getPostsAction,
     beforeGetPostsAction,

@@ -37,7 +37,7 @@ const ProtectedRouter = (data) => {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user,
+        user: state.user.user,
     };
 };
 
