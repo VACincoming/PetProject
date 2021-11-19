@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import UserActions from "redux/actions/UserActions";
 
-const Master = ({ getUser, user }) => {
+const Master = ({ getUser, user, loading }) => {
     const pathname = useLocation().pathname;
     const isNeedHeader = () => {
         if (pathname !== "/login" && pathname !== "/registration") {
@@ -26,11 +26,15 @@ const Master = ({ getUser, user }) => {
     }, []);
     return (
         <>
-            <>
-                {isNeedHeader()}
-                {isNeedFilters()}
-                <Routers />
-            </>
+            {loading ? (
+                <Loader />
+            ) : (
+                <>
+                    {isNeedHeader()}
+                    {isNeedFilters()}
+                    <Routers />
+                </>
+            )}
         </>
     );
 };
@@ -44,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        // loading: state.user.loading,
+        loading: state.user.loading,
     };
 };
 

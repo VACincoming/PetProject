@@ -1,6 +1,6 @@
 const PostsReducer = (
     state = {
-        loading: true,
+        loading: false,
         error: null,
         posts: [],
     }, action) => {
