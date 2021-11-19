@@ -5,6 +5,8 @@ import "./styles.scss";
 import { getLastPosts } from "api/posts.api";
 import PostContainer from "containers/Post";
 import LastPosts from "components/LastPosts";
+import { connect } from "react-redux";
+import UserActions from "redux/actions/UserActions";
 
 const MainPage = () => {
     const [lastPosts, setLastPosts] = useState([]);
@@ -30,4 +32,17 @@ const MainPage = () => {
     );
 };
 
-export default MainPage;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUser: () => dispatch(UserActions.getUser()),
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user.user,
+        // loading: state.user.loading,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

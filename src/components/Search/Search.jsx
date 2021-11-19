@@ -6,11 +6,14 @@ import { useTranslation } from "react-i18next";
 import CustomButton from "customComponents/CustomButton";
 import SearchIcon from "static/img/searchIcon.png";
 import "./index.scss";
+import PostsActions from "redux/actions/PostsActions";
+import { connect } from "react-redux";
 
-const Search = () => {
+const Search = ({ searchPosts }) => {
     const { t } = useTranslation();
-    const onSubmit = async (values) => {
-        console.log(values);
+    const onSubmit = (search) => {
+        console.log("13", search);
+        searchPosts(search.search);
     };
     return (
         <CustomForm
@@ -24,7 +27,7 @@ const Search = () => {
                     <CustomField
                         name="search"
                         id="search"
-                        required={true}
+                        // required={true}
                         className={"search-input"}
                         // label={t("search")}
                         size="small"
@@ -45,4 +48,10 @@ const Search = () => {
     );
 };
 
-export default Search;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        searchPosts: (search) => dispatch(PostsActions.searchPosts(search)),
+    };
+};
+
+export default connect(null, mapDispatchToProps)(Search);
