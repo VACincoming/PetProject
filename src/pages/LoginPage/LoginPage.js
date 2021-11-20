@@ -19,12 +19,7 @@ import "./styles.scss";
 import { Link as RouterLink } from "react-router-dom";
 import { Formik, Field, FastField, Form } from "formik";
 import { connect } from "react-redux";
-import { loginApi } from 'api/auth.api';
-import {
-    loginAction,
-    beforeLoginAction,
-    errorLoginAction
-} from 'redux/actions';
+import UserActions from 'redux/actions/UserActions';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -49,26 +44,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoginPage = ({
-    onLoginAction,
-    onBeforeLoginAction,
-    onErrorLoginAction
+    loginUser
 }) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
 
     const handleLogin = async (data) => {
-        onBeforeLoginAction();
         try {
-            const login = await loginApi(data);
-            localStorage.setItem('authorization', login.data.token);
-            onLoginAction(login.data);
+            loginUser(data);
             history.push('/');
         } catch (err) {
-            onErrorLoginAction(err)
+            console.log(err, ' 60');
         }
-
-        // history.push('/');
     };
     return (
         <Container component="main" maxWidth="xs">
@@ -169,9 +157,7 @@ const LoginPage = ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLoginAction: (data) => dispatch(loginAction(data)),
-        onBeforeLoginAction: () => dispatch(beforeLoginAction()),
-        onErrorLoginAction: () => dispatch(errorLoginAction()),
+        loginUser: (data) => dispatch(UserActions.loginUser(data))
     };
 };
 

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Post from "components/Post";
-import { getPostsService } from "services/posts.service";
 import { connect } from "react-redux";
 import PostsActions from "redux/actions/PostsActions";
+import Loader from "components/Loader";
 
-const PostContainer = ({ posts, getPosts }) => {
+const PostContainer = ({ posts, getPosts, loading }) => {
     // const [posts, setPosts] = useState();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
@@ -13,7 +13,9 @@ const PostContainer = ({ posts, getPosts }) => {
     console.log(posts);
     return (
         <>
-            {posts &&
+            {loading ? (
+                <Loader />
+            ) : (
                 posts?.map((post) => {
                     return (
                         <Post
@@ -27,7 +29,8 @@ const PostContainer = ({ posts, getPosts }) => {
                             type={post.type}
                         />
                     );
-                })}
+                })
+            )}
         </>
     );
 };
@@ -41,6 +44,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         posts: state.posts.posts,
+        loading: state.posts.loading,
     };
 };
 

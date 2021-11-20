@@ -6,7 +6,7 @@ import dispatchAction from 'helpers/dispatchUtility';
 
 const actionCreator = {
     getUser: () => dispatch => {
-        dispatch(dispatchAction('FETCH_LOADER_TRUE'));
+        dispatch(dispatchAction('FETCH_USER_REQUEST'));
         return (
             getUserApi()
                 .then(response => {
@@ -14,7 +14,6 @@ const actionCreator = {
                 })
                 .catch(error => {
                     dispatch(dispatchAction('FETCH_USER_ERROR', error));
-                    dispatch(dispatchAction('FETCH_LOADER_TRUE'));
                     throw error;
                 })
         )
@@ -24,6 +23,7 @@ const actionCreator = {
         return (
             loginApi(data)
                 .then(response => {
+                    localStorage.setItem('authorization', response.data.token);
                     dispatch(dispatchAction('FETCH_USER_SUCCESS', response.data));
                 })
                 .catch(error => {

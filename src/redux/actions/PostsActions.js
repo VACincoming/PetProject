@@ -6,7 +6,7 @@ import dispatchAction from 'helpers/dispatchUtility';
 
 const actionCreator = {
     getPosts: () => dispatch => {
-        dispatch(dispatchAction('FETCH_POSTS_REQUEST'))
+        // dispatch(dispatchAction('FETCH_POSTS_REQUEST'))
         return (
             getPosts()
                 .then(response => {
@@ -19,7 +19,7 @@ const actionCreator = {
         )
     },
     searchPosts: (search) => dispatch => {
-        dispatch(dispatchAction('FETCH_POSTS_REQUEST'));
+        // dispatch(dispatchAction('FETCH_POSTS_REQUEST'));
         return (
             searchPosts(search)
                 .then(response => {

@@ -26,15 +26,9 @@ const Master = ({ getUser, user, loading }) => {
     }, []);
     return (
         <>
-            {loading ? (
-                <Loader />
-            ) : (
-                <>
-                    {isNeedHeader()}
-                    {isNeedFilters()}
-                    <Routers />
-                </>
-            )}
+            {isNeedHeader()}
+            {isNeedFilters()}
+            <Routers />
         </>
     );
 };
