@@ -56,12 +56,12 @@ const CreatePage = () => {
     return (
         <div data-component="create-page" className={classes.root}>
             <Grid container>
+                <Grid item xs={12} className="create-wrapper">
                 <Text
                     tag="h2"
                     className="create-title"
                     title={t("create:title")}
                 />
-                <Grid item xs={12} className="create-wrapper">
                     <Grid item xs={12} md={6} sm={6}>
                         <CustomForm
                             initialValues={{
@@ -76,65 +76,77 @@ const CreatePage = () => {
                         >
                             {({ values, setFieldValue }) => (
                                 <Form className="create-post-form">
-                                    <CustomField
-                                        name="title"
-                                        id="title"
-                                        required={true}
-                                        label={t("create:name")}
-                                        value={values.title}
-                                    />
-                                    <CustomField
-                                        name="description"
-                                        id="description"
-                                        required={true}
-                                        ariaLabel="description"
-                                        placeholder={t("create:description")}
-                                        value={values.description}
-                                        as={CustomTextArea}
-                                    />
-                                    <CustomField
-                                        acceptedFiles={["image/*"]}
-                                        name="photos"
-                                        id="photos"
-                                        value={values.photos}
-                                        as={DropzoneArea}
-                                        // dropzoneText={
-                                        //     "Drag and drop an image here or click"
-                                        // }
-                                        onChange={(photos) => {
-                                            setFileNames(photos);
-                                        }}
-                                        filesLimit={10}
-                                        maxFileSize={6000000}
-                                    />
-                                    <FormControl component="fieldset">
-                                        <FormLabel component="legend">
-                                            Selected Option
-                                        </FormLabel>
-                                        <RadioGroup
-                                            name="type"
-                                            value={values.type}
-                                            onChange={(event) => {
-                                                setFieldValue(
-                                                    "type",
-                                                    event.currentTarget.value
-                                                );
+                                    <div className='form-group'>
+                                        <label htmlFor="title">Last Name</label>
+                                        <CustomField
+                                            name="title"
+                                            id="title"
+                                            required={true}
+                                            label={t("create:name")}
+                                            value={values.title}
+                                            />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor="description">Last Name</label>
+                                        <CustomField
+                                            name="description"
+                                            id="description"
+                                            required={true}
+                                            ariaLabel="description"
+                                            placeholder={t("create:description")}
+                                            value={values.description}
+                                            as={CustomTextArea}
+                                        />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor="format">Last Name</label>
+                                        <FormControl name='format' component="fieldset">
+                                            <FormLabel component="legend">
+                                                Selected Option
+                                            </FormLabel>
+                                            <RadioGroup
+                                                name="type"
+                                                value={values.type}
+                                                onChange={(event) => {
+                                                    setFieldValue(
+                                                        "type",
+                                                        event.currentTarget.value
+                                                    );
+                                                }}
+                                            >
+                                                <FormControlLabel
+                                                    value="FOUND"
+                                                    control={<Radio />}
+                                                    label="FOUND"
+                                                    name="type"
+                                                />
+                                                <FormControlLabel
+                                                    value="LOST"
+                                                    control={<Radio />}
+                                                    label="LOST"
+                                                    name="type"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </div>
+                                    <div className='form-group'>
+                                        <label htmlFor="photos">Last Name</label>
+                                        <CustomField
+                                            acceptedFiles={["image/*"]}
+                                            name="photos"
+                                            id="photos"
+                                            value={values.photos}
+                                            as={DropzoneArea}
+                                            // dropzoneText={
+                                            //     "Drag and drop an image here or click"
+                                            // }
+                                            onChange={(photos) => {
+                                                setFileNames(photos);
                                             }}
-                                        >
-                                            <FormControlLabel
-                                                value="FOUND"
-                                                control={<Radio />}
-                                                label="FOUND"
-                                                name="type"
-                                            />
-                                            <FormControlLabel
-                                                value="LOST"
-                                                control={<Radio />}
-                                                label="LOST"
-                                                name="type"
-                                            />
-                                        </RadioGroup>
-                                    </FormControl>
+                                            filesLimit={10}
+                                            maxFileSize={6000000}
+                                        />
+                                    </div>
                                     <CustomButton type="submit">
                                         {t("create:title")}
                                     </CustomButton>

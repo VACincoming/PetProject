@@ -33,6 +33,7 @@ export default function Dropdown({ activeItem, items, handleClick }) {
                                     onClick={() =>
                                         handleOnClick(item.name, popupState)
                                     }
+                                    key={item.name}
                                 >
                                     <img
                                         src={item.img}

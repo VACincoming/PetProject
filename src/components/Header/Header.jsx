@@ -55,6 +55,7 @@ const Header = ({ user }) => {
                     className="header_wrapper"
                     alignContent="center"
                     justifyContent="space-between"
+                    item
                 >
                     <Grid
                         xs={2}
@@ -75,7 +76,7 @@ const Header = ({ user }) => {
                         justifyContent="flex-end"
                         className="header_menu-wrapper"
                         // container
-                        // item
+                        item
                     >
                         <Grid xs={2} item>
                             <Dropdown
@@ -90,7 +91,7 @@ const Header = ({ user }) => {
                                 classes="header_create-btn"
                                 onClick={handleCreatePost}
                             >
-                                {t("header:createPost")}
+                                {t("create:title")}
                             </CustomButton>
                         </Grid>
                         <Grid

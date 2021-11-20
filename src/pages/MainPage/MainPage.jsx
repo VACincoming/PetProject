@@ -6,11 +6,13 @@ import { getLastPosts } from "api/posts.api";
 import PostContainer from "containers/Post";
 import LastPosts from "components/LastPosts";
 import { connect } from "react-redux";
-import UserActions from "redux/actions/UserActions";
+import Loader from "components/Loader";
+import PostsActions from "redux/actions/PostsActions";
 
-const MainPage = () => {
+const MainPage = ({loading, getPosts}) => {
     const [lastPosts, setLastPosts] = useState([]);
     useEffect(() => {
+        getPosts();
         (async () => {
             const res = await getLastPosts();
             if (res.status === 200) {
@@ -20,6 +22,9 @@ const MainPage = () => {
     }, []);
     return (
         <>
+         {loading ? (
+                <Loader />
+            ) : (
             <div data-component="main-page">
                 <div className="announ-wrapper">
                     <PostContainer />
@@ -28,20 +33,21 @@ const MainPage = () => {
                     <LastPosts lastPosts={lastPosts} />
                 </div>
             </div>
+            )}
         </>
     );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: () => dispatch(UserActions.getUser()),
+        getPosts: () => dispatch(PostsActions.getPosts()),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
         user: state.user.user,
-        // loading: state.user.loading,
+        loading: state.posts.loading,
     };
 };
 
