@@ -1,5 +1,9 @@
 {
     "title": "Создать Объявление",
+    "postTitle": "Заголовок",
+    "type": "Тип",
+    "detailedInfo":"Детальна інформація",
+    "emailAddress": "E-mail адреса",
     "name": "Название",
     "description": "Описание",
     "photo": "Фото",

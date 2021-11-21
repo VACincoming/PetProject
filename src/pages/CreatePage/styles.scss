@@ -35,5 +35,16 @@
     }
     .create-wrapper {
         background-color: #fafafa;
+        padding: 1rem 5rem;
+    }
+    .form-group {
+        display: flex;
+        align-items: center;
+    }
+    .form-label {
+        width: 200px;
+    }
+    .form-input {
+        width: 100%;
     }
 }

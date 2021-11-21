@@ -1,5 +1,9 @@
 {
     "title": "Create post",
+    "postTitle": "Title",
+    "type": "Type",
+    "detailedInfo":"Detailed Information",
+    "emailAddress": "E-mail",
     "name": "Title",
     "description": "Description",
     "photo": "Photo",
