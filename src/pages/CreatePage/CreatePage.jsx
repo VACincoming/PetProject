@@ -57,18 +57,19 @@ const CreatePage = () => {
         <div data-component="create-page" className={classes.root}>
             <Grid container>
                 <Grid item xs={12} className="create-wrapper">
-                <Text
-                    tag="h2"
-                    className="create-title"
-                    title={t("create:title")}
-                />
-                    <Grid item xs={9} md={9} sm={9}>
+                    <Text
+                        tag="h2"
+                        className="create-title"
+                        title={t("create:title")}
+                    />
+                    <Grid item xs={12} md={12} sm={12}>
                         <CustomForm
                             initialValues={{
                                 title: "",
                                 description: "",
-                                contactPhone: "4213",
-                                contactEmail: "sd13@mail.ru",
+                                phone: "",
+                                contactEmail: "",
+                                email: "",
                                 type: "FOUND",
                                 photos: [],
                             }}
@@ -76,20 +77,34 @@ const CreatePage = () => {
                         >
                             {({ values, setFieldValue }) => (
                                 <Form className="create-post-form">
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="title">{t('create:title')}</label>
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="title"
+                                        >
+                                            {t("create:postTitle")}
+                                        </label>
                                         <CustomField
                                             name="title"
                                             id="title"
                                             required={true}
-                                            label={t("create:name")}
+                                            label={t("create:postTitle")}
                                             value={values.title}
-                                            className='form-input'
+                                            className="form-input"
                                         />
                                     </div>
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="format">{t('create:type')}</label>
-                                        <FormControl name='format' className='form-input' component="fieldset">
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="format"
+                                        >
+                                            {t("create:type")}
+                                        </label>
+                                        <FormControl
+                                            name="format"
+                                            className="form-input"
+                                            component="fieldset"
+                                        >
                                             {/* <FormLabel component="legend">
                                                 Selected Option
                                             </FormLabel> */}
@@ -99,7 +114,8 @@ const CreatePage = () => {
                                                 onChange={(event) => {
                                                     setFieldValue(
                                                         "type",
-                                                        event.currentTarget.value
+                                                        event.currentTarget
+                                                            .value
                                                     );
                                                 }}
                                             >
@@ -118,43 +134,68 @@ const CreatePage = () => {
                                             </RadioGroup>
                                         </FormControl>
                                     </div>
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="description">{t('create:detailedInfo')}</label>
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="description"
+                                        >
+                                            {t("create:detailedInfo")}
+                                        </label>
                                         <CustomField
                                             name="description"
                                             id="description"
                                             required={true}
                                             ariaLabel="description"
-                                            placeholder={t("create:description")}
+                                            placeholder={t(
+                                                "create:description"
+                                            )}
                                             value={values.description}
+                                            minRows={7}
                                             as={CustomTextArea}
-                                            className='form-input'
+                                            className="form-input"
                                         />
                                     </div>
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="title">{t('create:phone')}</label>
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="phone"
+                                        >
+                                            {t("create:phone")}
+                                        </label>
                                         <CustomField
-                                            name="title"
-                                            id="title"
+                                            name="phone"
+                                            id="phone"
                                             required={true}
-                                            label={t("create:name")}
-                                            value={values.title}
-                                            className='form-input'
+                                            placeholder={t("create:phone")}
+                                            label={t("create:phone")}
+                                            value={values.phone}
+                                            className="form-input"
                                         />
                                     </div>
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="title">{t('create:emailAddress')}</label>
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="email"
+                                        >
+                                            {t("create:emailAddress")}
+                                        </label>
                                         <CustomField
-                                            name="title"
-                                            id="title"
+                                            name="email"
+                                            id="email"
                                             required={true}
-                                            label={t("create:name")}
-                                            value={values.title}
-                                            className='form-input'
+                                            placeholder={t("create:email")}
+                                            label={t("create:email")}
+                                            value={values.email}
+                                            className="form-input"
                                         />
                                     </div>
-                                    <div className='form-group'>
-                                        <label className='form-label' htmlFor="photos">{t('create:photo')}</label>
+                                    <div className="form-group">
+                                        <label
+                                            className="form-label"
+                                            htmlFor="photos"
+                                        >
+                                            {t("create:photo")}
+                                        </label>
                                         <CustomField
                                             acceptedFiles={["image/*"]}
                                             name="photos"
@@ -171,9 +212,16 @@ const CreatePage = () => {
                                             maxFileSize={6000000}
                                         />
                                     </div>
-                                    <CustomButton type="submit">
-                                        {t("create:title")}
-                                    </CustomButton>
+                                    <div className="form-create-btn">
+                                        {/* <Grid xs={3} item> */}
+                                        <CustomButton
+                                            type="submit"
+                                            variant="contained"
+                                        >
+                                            {t("create:title")}
+                                        </CustomButton>
+                                        {/* </Grid> */}
+                                    </div>
                                 </Form>
                             )}
                         </CustomForm>
