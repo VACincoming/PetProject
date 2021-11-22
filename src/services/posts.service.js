@@ -1,4 +1,4 @@
-import { getPosts, searchPosts } from 'api/posts.api';
+import { getPosts, searchPosts, getPostAction } from 'api/posts.api';
 import {
     getPostsAction,
     beforeGetPostsAction,
@@ -6,8 +6,7 @@ import {
 } from 'redux/actions';
 
 const getPostsService = () => () => (dispatch) => {
-    console.log('99')
-    beforeGetPostsAction();
+    // beforeGetPostsAction();
     return getPosts()
         .then(res => {
             dispatch(getPostsAction(res.data));
@@ -18,8 +17,19 @@ const getPostsService = () => () => (dispatch) => {
         })
 }
 
+const getPostService = () => () => (dispatch) => {
+    return getPosts()
+        .then(res => {
+            dispatch(getPostAction(res.data));
+            return res
+        })
+        .catch((err) => {
+            dispatch(errorGetPostsAction(err));
+        })
+}
+
 const searchPostsService = (search) => () => (dispatch) => {
-    beforeGetPostsAction();
+    // beforeGetPostsAction();
     return searchPosts(search)
         .then(res => {
             dispatch(getPostsAction(res.data));
@@ -32,5 +42,6 @@ const searchPostsService = (search) => () => (dispatch) => {
 
 export {
     getPostsService,
-    searchPostsService
+    searchPostsService,
+    getPostService
 }

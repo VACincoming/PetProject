@@ -1,12 +1,12 @@
 @import "../../styles/index.scss";
 
 .announ-wrapper {
-    min-width: 100%;
+    // min-width: 100%;
 
-    @include breakpoint(desktop) {
-        width: 75%;
-        min-width: 75%;
-    }
+    // @include breakpoint(desktop) {
+    //     width: 75%;
+    //     min-width: 75%;
+    // }
 }
 [data-component="announ"] {
     padding: 1rem;

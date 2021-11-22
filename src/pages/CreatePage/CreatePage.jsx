@@ -152,7 +152,9 @@ const CreatePage = () => {
                                             value={values.description}
                                             minRows={7}
                                             as={CustomTextArea}
-                                            className="form-input"
+                                            className={
+                                                "form-input form-input-description"
+                                            }
                                         />
                                     </div>
                                     <div className="form-group">
@@ -189,29 +191,29 @@ const CreatePage = () => {
                                             className="form-input"
                                         />
                                     </div>
-                                    <div className="form-group">
+                                    {/* <div className="form-group">
                                         <label
                                             className="form-label"
                                             htmlFor="photos"
                                         >
                                             {t("create:photo")}
-                                        </label>
-                                        <CustomField
-                                            acceptedFiles={["image/*"]}
-                                            name="photos"
-                                            id="photos"
-                                            value={values.photos}
-                                            as={DropzoneArea}
-                                            // dropzoneText={
-                                            //     "Drag and drop an image here or click"
-                                            // }
-                                            onChange={(photos) => {
-                                                setFileNames(photos);
-                                            }}
-                                            filesLimit={10}
-                                            maxFileSize={6000000}
-                                        />
-                                    </div>
+                                        </label> */}
+                                    <CustomField
+                                        acceptedFiles={["image/*"]}
+                                        name="photos"
+                                        id="photos"
+                                        value={values.photos}
+                                        as={DropzoneArea}
+                                        // dropzoneText={
+                                        //     "Drag and drop an image here or click"
+                                        // }
+                                        onChange={(photos) => {
+                                            setFileNames(photos);
+                                        }}
+                                        filesLimit={10}
+                                        maxFileSize={6000000}
+                                    />
+                                    {/* </div> */}
                                     <div className="form-create-btn">
                                         {/* <Grid xs={3} item> */}
                                         <CustomButton
