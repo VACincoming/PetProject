@@ -1,6 +1,7 @@
 import {
     searchPosts,
-    getPosts
+    getPosts,
+    getPost
 } from 'api/posts.api';
 import dispatchAction from 'helpers/dispatchUtility';
 
@@ -20,7 +21,7 @@ const actionCreator = {
     },
     getPost: (id) => (dispatch) => {
         dispatch(dispatchAction('FETCH_POST_REQUEST'));
-        return getPosts(id)
+        return getPost(id)
             .then(response => {
                 dispatch(dispatchAction('FETCH_POST_SUCCESS', response.data));
             })

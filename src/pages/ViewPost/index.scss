@@ -1,0 +1,11 @@
+[data-component="view-post-page"] {
+    padding: 2rem;
+    .photo-container {
+        width: 70%;
+        margin: auto;
+    }
+    .post-details {
+        display: flex;
+        flex-direction: column;
+    }
+}
