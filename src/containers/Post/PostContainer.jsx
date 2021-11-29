@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Post from "components/Post";
 import { connect } from "react-redux";
 
@@ -6,20 +6,20 @@ const PostContainer = ({ posts }) => {
     return (
         <>
             {posts?.map((post) => {
-                    return (
-                        <Post
-                            title={post.title}
-                            description={post.description}
-                            createdAt={post.createdAt}
-                            contactEmail={post.contactEmail}
-                            contactPhone={post.contactPhone}
-                            photoUrl={post.photos[0]}
-                            key={post.id}
-                            type={post.type}
-                        />
-                    );
-                    })
-                }
+                return (
+                    <Post
+                        title={post.title}
+                        description={post.description}
+                        createdAt={post.createdAt}
+                        contactEmail={post.contactEmail}
+                        contactPhone={post.contactPhone}
+                        photoUrl={post.photos[0]}
+                        key={post.id}
+                        id={post.id}
+                        type={post.type}
+                    />
+                );
+            })}
         </>
     );
 };

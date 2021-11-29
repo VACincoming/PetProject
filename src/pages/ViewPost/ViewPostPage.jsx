@@ -13,7 +13,10 @@ import CustomText from "customComponents/CustomText";
 import { useTranslation } from "react-i18next";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import phone from "static/img/phone.png";
+import mail from "static/img/mail.png";
 const ViewPostPage = ({ loading, getPost, post }) => {
     const { id } = useParams();
     const { t } = useTranslation();
@@ -21,53 +24,73 @@ const ViewPostPage = ({ loading, getPost, post }) => {
     useEffect(() => {
         getPost(id);
     }, [id]);
-    console.log("18", post);
+    const date = post?.createdAt
+        ?.split(" ")[0]
+        ?.split("-")
+        ?.reverse()
+        ?.join(".");
     return (
         <>
             {loading ? (
                 <Loader />
             ) : (
                 <div data-component="view-post-page">
-                    <div className="photo-container">
-                        <Carousel>
-                            {post?.photos?.map((photo) => (
-                                <div>
-                                    <img src={photo} alt="" />
-                                </div>
-                            ))}
-                        </Carousel>
-                    </div>
-                    <div className="post-details">
-                        <CustomText
-                            className="post-title"
-                            tag="h2"
-                            title={post?.title}
-                        />
-                        <CustomText
-                            className="post-description"
-                            title={post?.description}
-                        />
-                        <CustomText
-                            className="post-contacts"
-                            title={t("Contacts")}
-                        />
-                        <CustomText
-                            className="post-phone"
-                            title={post?.contactPhone}
-                        />
-                        <CustomText
-                            className="post-email"
-                            title={post?.contactEmail}
-                        />
-                        <CustomText
-                            className="post-email"
-                            title={post?.type?.toLowerCase()}
-                        />
-                        <div className="post-createdAt">
-                            <CustomText title={t("Date of creation post:")} />
-                            <CustomText title={post?.createdAt} />
+                    <Container className="view-post-container" maxWidth="lg">
+                        <div className="photo-container">
+                            <Carousel dynamicHeight={true}>
+                                {post?.photos?.map((photo) => (
+                                    <div>
+                                        <img src={photo} alt="" />
+                                    </div>
+                                ))}
+                            </Carousel>
                         </div>
-                    </div>
+                        <div className="post-details">
+                            <CustomText
+                                className="post-title my-1"
+                                tag="h2"
+                                title={post?.title}
+                            />
+                            <CustomText
+                                className="post-description mb-1"
+                                title={post?.description}
+                            />
+                            <CustomText
+                                className="post-subtitle mb-1"
+                                title={t("Contacts")}
+                            />
+                            {post?.contactPhone && (
+                                <div className="post-contact-container">
+                                    <img src={phone} alt="" />
+                                    <CustomText
+                                        className="post-phone mb-1"
+                                        title={post?.contactPhone}
+                                    />
+                                </div>
+                            )}
+                            {post?.contactEmail && (
+                                <div className="post-contact-container mb-1">
+                                    <img src={mail} alt="" />
+                                    <CustomText
+                                        className="post-email"
+                                        title={post?.contactEmail}
+                                    />
+                                </div>
+                            )}
+                            <CustomText
+                                className="post-subtitle mb-1"
+                                title="Тип"
+                            />
+                            <CustomText
+                                className="mb-1"
+                                title={post?.type?.toLowerCase()}
+                            />
+                            <div className="post-subtitle post-createdAt mb-1">
+                                <CustomText title={"Date of creation post:"} />
+                                <CustomText title={date} />
+                            </div>
+                        </div>
+                    </Container>
                 </div>
             )}
         </>

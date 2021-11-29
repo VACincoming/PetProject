@@ -1,5 +1,11 @@
 [data-component="view-post-page"] {
     padding: 2rem;
+    background: #ebebeb;
+    min-height: 90vh;
+    .view-post-container {
+        background: #fff;
+        padding: 3rem;
+    }
     .photo-container {
         width: 70%;
         margin: auto;
@@ -7,5 +13,42 @@
     .post-details {
         display: flex;
         flex-direction: column;
+    }
+    .post-createdAt {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .post-contact-container {
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+        border: 2px solid #ff5100;
+        width: fit-content;
+        border-radius: 10px;
+        & img {
+            margin-right: 1rem;
+        }
+    }
+    .post-subtitle {
+        font-weight: bold;
+        margin-top: 1rem;
+    }
+
+    .mt-1 {
+        margin-top: 1rem;
+    }
+    .mt-2 {
+        margin-top: 2rem;
+    }
+    .mb-1 {
+        margin-bottom: 1rem;
+    }
+    .mb-2 {
+        margin-bottom: 2rem;
+    }
+    .my-1 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 }

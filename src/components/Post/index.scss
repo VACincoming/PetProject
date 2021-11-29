@@ -15,6 +15,9 @@
     display: block;
     border-radius: 5px;
     height: 200px;
+    &:hover {
+        cursor: pointer;
+    }
 
     @include breakpoint(mobile_landscape) {
         flex-direction: row;

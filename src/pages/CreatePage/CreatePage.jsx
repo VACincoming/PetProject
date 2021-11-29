@@ -19,6 +19,8 @@ import { DropzoneArea } from "material-ui-dropzone";
 import "./styles.scss";
 import { createPostApi } from "api/posts.api";
 import { uploadFilesApi } from "api/files.api";
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreatePage = () => {
     const classes = useStyles();
+    const history = useHistory();
     const { t } = useTranslation();
     const [fileNames, setFileNames] = useState([]);
 
@@ -49,8 +52,11 @@ const CreatePage = () => {
         fileNames.forEach((photo) => {
             attachments.append("attachments", photo);
         });
-        const res = await createPostApi(newValues);
-        await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
+        try {
+            const res = await createPostApi(newValues);
+            await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
+            history.push(`/view-post/${res?.data?.id}`);
+        } catch (err) {}
     };
 
     return (

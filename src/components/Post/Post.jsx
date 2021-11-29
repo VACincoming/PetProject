@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./index.scss";
 
 const Post = ({
@@ -6,6 +7,7 @@ const Post = ({
     description = "Рыжий кот пропал",
     type = "found",
     createdAt = "20/07/2021",
+    id = "",
     contactEmail = "Vasil Pertovich",
     contactPhone = "+380931235422",
     photoUrl = "https://ichef.bbci.co.uk/news/976/cpsprodpb/1086B/production/_115619676_dog2.jpg",
@@ -14,6 +16,7 @@ const Post = ({
     let time = createdAt?.split(" ")[1];
     time = time?.replace(/-/g, ":");
     const [typeAnn, setTypeAnn] = useState(type);
+    const history = useHistory();
     useEffect(() => {
         if (type === "found") {
             setTypeAnn("Знайдено");
@@ -22,7 +25,10 @@ const Post = ({
         setTypeAnn("Втрачено");
     }, []);
     return (
-        <div data-component="announ">
+        <div
+            data-component="announ"
+            onClick={() => history.push(`/view-post/${id}`)}
+        >
             <div className="announ-image">
                 <img src={photoUrl} alt="pet" />
             </div>

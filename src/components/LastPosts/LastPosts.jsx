@@ -1,6 +1,9 @@
 import React from "react";
 import "./index.scss";
+import { useHistory } from "react-router-dom";
+
 const LastPosts = ({ lastPosts }) => {
+    const history = useHistory();
     return (
         <div data-component="last-posts">
             <h3>Нещодавно додані</h3>
@@ -11,7 +14,11 @@ const LastPosts = ({ lastPosts }) => {
                     ?.reverse()
                     ?.join(".");
                 return (
-                    <div className="last-posts-item" key={post.id}>
+                    <div
+                        className="last-posts-item"
+                        key={post.id}
+                        onClick={() => history.push(`/view-post/${post?.id}`)}
+                    >
                         <p className="last-posts-title">
                             {++index}) {post.title}{" "}
                         </p>

@@ -6,7 +6,7 @@ import ViewPost from "pages/ViewPost";
 import RegistrationPage from "pages/RegistrationPage";
 import CreatePage from "pages/CreatePage";
 import ProtectedRouter from "./ProtectedRouter";
-
+import TestPage from "./TestPage";
 const Routers = () => {
     return (
         <Switch>
@@ -21,6 +21,9 @@ const Routers = () => {
             </Route>
             <Route exact path="/view-post/:id">
                 <ViewPost />
+            </Route>
+            <Route exact path="/test-page">
+                <TestPage />
             </Route>
             <ProtectedRouter exact path="/create">
                 <CreatePage />
