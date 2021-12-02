@@ -31,7 +31,11 @@
             cursor: pointer;
         }
     }
-
+    .MuiAvatar-root {
+        &:hover {
+            cursor: pointer !important;
+        }
+    }
     &_menu-wrapper {
         display: flex;
         align-items: center;

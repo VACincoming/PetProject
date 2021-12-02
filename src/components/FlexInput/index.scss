@@ -1,0 +1,29 @@
+.edit-img {
+    position: absolute;
+    top: -13px;
+    right: -13px;
+    width: 1.5rem;
+    height: 1.5rem;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.cancel-input {
+    width: fit-content;
+    position: relative;
+    margin-bottom: 2rem;
+    height: 45px;
+    input {
+        min-width: 18rem;
+        padding: 1rem;
+    }
+    fieldset {
+        border: 1.5px solid #202833;
+        border-radius: 10px;
+    }
+}
+
+.label-text {
+    margin-bottom: 1rem;
+}

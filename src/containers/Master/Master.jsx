@@ -22,7 +22,7 @@ const Master = ({ getUser, user, loading }) => {
         }
     };
     useEffect(() => {
-        user?.id && getUser();
+        !user?.id && getUser();
     }, []);
     return (
         <>

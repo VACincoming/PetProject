@@ -7,7 +7,10 @@ import RegistrationPage from "pages/RegistrationPage";
 import CreatePage from "pages/CreatePage";
 import ProtectedRouter from "./ProtectedRouter";
 import TestPage from "./TestPage";
-const Routers = () => {
+import MyUserPage from "./MyUserPage";
+import { connect } from "react-redux";
+
+const Routers = ({ loading }) => {
     return (
         <Switch>
             <Route path="/login">
@@ -25,11 +28,24 @@ const Routers = () => {
             <Route exact path="/test-page">
                 <TestPage />
             </Route>
-            <ProtectedRouter exact path="/create">
-                <CreatePage />
-            </ProtectedRouter>
+            {loading && (
+                <>
+                    <ProtectedRouter exact path="/create">
+                        <CreatePage />
+                    </ProtectedRouter>
+                    <ProtectedRouter exact path="/myprofile">
+                        <MyUserPage />
+                    </ProtectedRouter>
+                </>
+            )}
         </Switch>
     );
 };
 
-export default Routers;
+const mapStateToProps = (state) => {
+    return {
+        loading: state.user.user,
+    };
+};
+
+export default connect(mapStateToProps)(Routers);

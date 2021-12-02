@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Dropdown from "components/Dropdown";
+
 const Header = ({ user }) => {
     const history = useHistory();
     const { i18n, t } = useTranslation();
@@ -101,7 +102,11 @@ const Header = ({ user }) => {
                             className="header_menu-wrapper"
                         >
                             {user ? (
-                                <Avatar alt="Cindy Baker">
+                                <Avatar
+                                    alt="Cindy Baker"
+                                    onClick={() => history.push("/myprofile")}
+                                    classes={"header-avatar"}
+                                >
                                     {/* {user?.email[0]}
                                 {user?.email[1]} */}
                                 </Avatar>
