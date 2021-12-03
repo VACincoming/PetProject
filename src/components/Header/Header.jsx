@@ -107,8 +107,8 @@ const Header = ({ user }) => {
                                     onClick={() => history.push("/myprofile")}
                                     classes={"header-avatar"}
                                 >
-                                    {/* {user?.email[0]}
-                                {user?.email[1]} */}
+                                    {user?.firstName[0]}
+                                    {user?.lastName[0]}
                                 </Avatar>
                             ) : (
                                 <CustomButton
