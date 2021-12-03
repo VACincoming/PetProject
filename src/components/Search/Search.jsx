@@ -9,11 +9,14 @@ import "./index.scss";
 import PostsActions from "redux/actions/PostsActions";
 import { connect } from "react-redux";
 
-const Search = ({ searchPosts }) => {
+const Search = ({ searchPosts, getPosts }) => {
     const { t } = useTranslation();
     const onSubmit = (search) => {
-        console.log("13", search);
-        searchPosts(search.search);
+        if (search?.search) {
+            searchPosts(search.search);
+            return;
+        }
+        getPosts();
     };
     return (
         <CustomForm
@@ -50,6 +53,7 @@ const Search = ({ searchPosts }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getPosts: () => dispatch(PostsActions.getPosts()),
         searchPosts: (search) => dispatch(PostsActions.searchPosts(search)),
     };
 };

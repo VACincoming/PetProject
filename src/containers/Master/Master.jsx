@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import UserActions from "redux/actions/UserActions";
 
-const Master = ({ getUser, user, loading }) => {
+const Master = ({ getUser, user = {}, loading }) => {
     const pathname = useLocation().pathname;
     const isNeedHeader = () => {
         if (pathname !== "/login" && pathname !== "/registration") {
@@ -24,6 +24,13 @@ const Master = ({ getUser, user, loading }) => {
     useEffect(() => {
         !user?.id && getUser();
     }, []);
+
+    useEffect(() => {
+        if (user?.token) {
+            getUser();
+        }
+    }, [user?.token]);
+
     return (
         <>
             {isNeedHeader()}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import CustomButton from "customComponents/CustomButton";
+import BasicModal from "components/BasicModal";
 import "./index.scss";
 
 const Post = ({
@@ -11,11 +13,13 @@ const Post = ({
     contactEmail = "Vasil Pertovich",
     contactPhone = "+380931235422",
     photoUrl = "https://ichef.bbci.co.uk/news/976/cpsprodpb/1086B/production/_115619676_dog2.jpg",
+    deletePost,
 }) => {
     const date = createdAt?.split(" ")[0];
     let time = createdAt?.split(" ")[1];
     time = time?.replace(/-/g, ":");
     const [typeAnn, setTypeAnn] = useState(type);
+    const [openModal, setOpenModal] = useState(false);
     const history = useHistory();
     useEffect(() => {
         if (type === "found") {
@@ -25,16 +29,31 @@ const Post = ({
         setTypeAnn("Втрачено");
     }, []);
     return (
-        <div
-            data-component="announ"
-            onClick={() => history.push(`/view-post/${id}`)}
-        >
-            <div className="announ-image">
+        <div data-component="announ">
+            <div
+                className="announ-image"
+                onClick={() => history.push(`/view-post/${id}`)}
+            >
                 <img src={photoUrl} alt="pet" />
             </div>
             <div className="announ-content">
                 <div className="announ-top">
-                    <h3 className="announ-title">{title}</h3>
+                    <div className="announ-top-line">
+                        <h3
+                            className="announ-title"
+                            onClick={() => history.push(`/view-post/${id}`)}
+                        >
+                            {title}
+                        </h3>
+                        <CustomButton
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setOpenModal(true);
+                            }}
+                            text="Delete"
+                            variant="contained"
+                        />
+                    </div>
                     <span className="announ-description">{description}</span>
                 </div>
                 <div className="announ-contacts">
@@ -46,10 +65,16 @@ const Post = ({
                     <h4 className="announ-type">{typeAnn}</h4>
                     <div className="announ-date">
                         <div>{date}</div>
-                        {/* <div>{time}</div> */}
                     </div>
                 </div>
             </div>
+            <BasicModal
+                open={openModal}
+                handleClose={() => setOpenModal(false)}
+                onConfirm={deletePost}
+                title="Confirmation"
+                description="Are you sure to delete it?"
+            />
         </div>
     );
 };

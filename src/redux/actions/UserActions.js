@@ -31,6 +31,9 @@ const actionCreator = {
                     throw error;
                 })
         )
+    },
+    logoutUser: () => dispatch => {
+        dispatch(dispatchAction('FETCH_USER_REQUEST'));
     }
 }
 

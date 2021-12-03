@@ -8,9 +8,16 @@ import CreatePage from "pages/CreatePage";
 import ProtectedRouter from "./ProtectedRouter";
 import TestPage from "./TestPage";
 import MyUserPage from "./MyUserPage";
+import MyPostsPage from "./MyPostsPage";
+import Logout from "./Logout";
 import { connect } from "react-redux";
-
-const Routers = ({ loading }) => {
+import Menu from "components/Menu";
+import { useLocation } from "react-router-dom";
+import Container from "@mui/material/Container";
+import "./index.scss";
+const Routers = ({ loading, user }) => {
+    const location = useLocation();
+    console.log("15", loading, user);
     return (
         <Switch>
             <Route path="/login">
@@ -28,14 +35,30 @@ const Routers = ({ loading }) => {
             <Route exact path="/test-page">
                 <TestPage />
             </Route>
-            {loading && (
+            {user && (
                 <>
                     <ProtectedRouter exact path="/create">
                         <CreatePage />
                     </ProtectedRouter>
-                    <ProtectedRouter exact path="/myprofile">
-                        <MyUserPage />
+                    <ProtectedRouter exact path="/logout">
+                        <Logout />
                     </ProtectedRouter>
+                    <div data-component="user-page">
+                        <div className="menu-container">
+                            <Menu currentLink={location.pathname} />
+                        </div>
+                        <Container
+                            className="user-content-container"
+                            maxWidth="lg"
+                        >
+                            <ProtectedRouter exact path="/myprofile">
+                                <MyUserPage />
+                            </ProtectedRouter>
+                            <ProtectedRouter exact path="/myposts">
+                                <MyPostsPage />
+                            </ProtectedRouter>
+                        </Container>
+                    </div>
                 </>
             )}
         </Switch>
@@ -44,7 +67,8 @@ const Routers = ({ loading }) => {
 
 const mapStateToProps = (state) => {
     return {
-        loading: state.user.user,
+        loading: state.user.loading,
+        user: state.user.user,
     };
 };
 

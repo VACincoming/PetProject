@@ -105,7 +105,6 @@ const Header = ({ user }) => {
                                 <Avatar
                                     alt="Cindy Baker"
                                     onClick={() => history.push("/myprofile")}
-                                    classes={"header-avatar"}
                                 >
                                     {user?.firstName[0]}
                                     {user?.lastName[0]}

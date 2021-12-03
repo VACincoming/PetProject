@@ -1,0 +1,56 @@
+[data-component="user-page"] {
+    padding: 2rem;
+    background: #ebebeb;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .user-content-container {
+        background: #fff;
+        padding: 3rem;
+        height: 100%;
+        margin-right: 2rem;
+        margin-left: 2rem;
+        width: 800px;
+    }
+    .active-item {
+        color: #fa7638;
+    }
+    .menu-container {
+        margin-left: 2rem;
+    }
+
+    .user-field {
+        margin-bottom: 2rem;
+        width: fit-content;
+        min-width: 20rem;
+        height: 52px;
+    }
+    .user-form {
+        flex-direction: column;
+        display: flex;
+    }
+    .user-fields-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .user-fields-column {
+        display: flex;
+        flex-direction: column;
+    }
+    .avatar-wrapper {
+        margin-top: 1rem !important;
+        margin-bottom: 2rem !important;
+        position: relative;
+        .edit-img {
+            top: 86px;
+            right: 0px;
+            width: 2rem;
+            height: 2rem;
+        }
+        & > * {
+            font-size: 4rem;
+        }
+    }
+}

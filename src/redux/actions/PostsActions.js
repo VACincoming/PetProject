@@ -1,7 +1,8 @@
 import {
     searchPosts,
     getPosts,
-    getPost
+    getPost,
+    deletePost
 } from 'api/posts.api';
 import dispatchAction from 'helpers/dispatchUtility';
 
@@ -34,6 +35,20 @@ const actionCreator = {
         dispatch(dispatchAction('FETCH_POSTS_REQUEST'));
         return (
             searchPosts(search)
+                .then(response => {
+                    dispatch(dispatchAction('FETCH_POSTS_SUCCESS', response.data));
+                })
+                .catch(error => {
+                    dispatch(dispatchAction('FETCH_POSTS_ERROR', error));
+                    throw error;
+                })
+        )
+    },
+    deletePost: (id) => dispatch => {
+        // dispatch(dispatchAction('FETCH_POSTS_REQUEST'));
+        return (
+            deletePost(id)
+                .then(() => getPosts())
                 .then(response => {
                     dispatch(dispatchAction('FETCH_POSTS_SUCCESS', response.data));
                 })

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-const pagesForUser = ["/create", "/myprofile"];
+const pagesForUser = ["/create", "/myprofile", "/myposts", "/logout"];
 
 const ProtectedRouter = (data) => {
     const { props, user, children, ...rest } = data;
@@ -12,12 +12,12 @@ const ProtectedRouter = (data) => {
             return true;
         }
     }
-
     // useEffect(() => {}, [loading]);
     return (
         <Route
             {...rest}
             render={(props) => {
+                console.log("21", props.location, data);
                 if (checkAuth(props.location)) {
                     return children;
                 } else {

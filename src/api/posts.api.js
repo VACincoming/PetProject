@@ -10,6 +10,13 @@ const createPostApi = (data) => {
     })
 };
 
+const deletePost = (id) => {
+    return makeRequest({
+        method: "DELETE",
+        url: `${apiUrl}/posts/${id}`,
+    })
+}
+
 const getPosts = () => {
     return makeRequest({
         url: `${apiUrl}/posts`,
@@ -30,11 +37,12 @@ const getLastPosts = () => {
 
 const searchPosts = (searchString) => {
     return makeRequest({
-        url: `${apiUrl}/posts/search?searchString=${searchString}`
+        url: `${apiUrl}/posts?searchString=${searchString}`
     })
 }
 
 export {
+    deletePost,
     searchPosts,
     getLastPosts,
     createPostApi,
