@@ -23,6 +23,12 @@ const getPosts = () => {
     })
 }
 
+const getMyPosts = () => {
+    return makeRequest({
+        url: `${apiUrl}/posts/my`,
+    })
+}
+
 const getPost = (id) => {
     return makeRequest({
         url: `${apiUrl}/posts/${id}`,
@@ -47,5 +53,6 @@ export {
     getLastPosts,
     createPostApi,
     getPosts,
-    getPost
+    getPost,
+    getMyPosts
 }

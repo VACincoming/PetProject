@@ -1,10 +1,13 @@
+@import "../styles/index.scss";
+
 [data-component="user-page"] {
     padding: 2rem;
-    background: #ebebeb;
+    background-color: $main-background;
     min-height: 90vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
     .user-content-container {
         background: #fff;
         padding: 3rem;
@@ -12,7 +15,12 @@
         margin-right: 2rem;
         margin-left: 2rem;
         width: 800px;
+        &.no-background {
+            background: initial;
+            padding: 0;
+        }
     }
+
     .active-item {
         color: #fa7638;
     }

@@ -71,22 +71,22 @@ const Header = ({ user }) => {
                         <img src={Logo} alt="Find Pet" />
                     </Grid>
                     <Grid
-                        xs={9}
+                        xs={12}
                         sm={7}
-                        md={9}
+                        md={8}
                         justifyContent="flex-end"
                         className="header_menu-wrapper"
                         // container
                         item
                     >
-                        <Grid xs={2} item>
+                        <Grid xs={"auto"} item>
                             <Dropdown
                                 activeItem={i18n.language}
                                 handleClick={(lng) => handleClick(lng)}
                                 items={languages}
                             />
                         </Grid>
-                        <Grid xs={2} item>
+                        <Grid xs={"auto"} item>
                             <CustomButton
                                 variant="contained"
                                 classes="header_create-btn"
@@ -96,7 +96,7 @@ const Header = ({ user }) => {
                             </CustomButton>
                         </Grid>
                         <Grid
-                            xs={2}
+                            xs={"auto"}
                             item
                             justifyContent="flex-end"
                             className="header_menu-wrapper"

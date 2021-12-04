@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import LoginPage from "pages/LoginPage";
 import MainPage from "pages/MainPage";
 import ViewPost from "pages/ViewPost";
@@ -17,7 +17,17 @@ import Container from "@mui/material/Container";
 import "./index.scss";
 const Routers = ({ loading, user }) => {
     const location = useLocation();
-    console.log("15", loading, user);
+    const containerRef = useRef();
+    useEffect(() => {
+        const container = containerRef.current;
+        if (location.pathname === "/myprofile") {
+            container.className = "user-content-container";
+            return;
+        }
+        if (container) {
+            container.className = "user-content-container no-background";
+        }
+    }, [location.pathname, user]);
     return (
         <Switch>
             <Route path="/login">
@@ -50,6 +60,7 @@ const Routers = ({ loading, user }) => {
                         <Container
                             className="user-content-container"
                             maxWidth="lg"
+                            ref={containerRef}
                         >
                             <ProtectedRouter exact path="/myprofile">
                                 <MyUserPage />
@@ -61,6 +72,7 @@ const Routers = ({ loading, user }) => {
                     </div>
                 </>
             )}
+            <Redirect to="/" />
         </Switch>
     );
 };

@@ -9,5 +9,12 @@
 }
 
 .lastPosts-wrapper {
-    max-width: 400px;
+    display: none;
+}
+
+@include breakpoint(desktop) {
+    .lastPosts-wrapper {
+        max-width: 370px;
+        display: block;
+    }
 }

@@ -21,7 +21,10 @@
         width: 100%;
         display: flex;
         align-items: stretch;
-        min-height: 15rem;
+        min-height: 16rem;
+    }
+    .announ-top {
+        margin-bottom: 1rem;
     }
     .announ-top-line {
         display: flex;
@@ -80,6 +83,7 @@
             display: flex;
             justify-content: space-between;
             flex-direction: column;
+            margin-bottom: 1rem;
             // align-items: center;
         }
     }

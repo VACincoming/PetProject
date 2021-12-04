@@ -13,12 +13,31 @@ import CustomText from "customComponents/CustomText";
 import { useTranslation } from "react-i18next";
 import Avatar from "@mui/material/Avatar";
 import edit from "static/img/edit.png";
+import DropzoneDialog from "components/DropzoneDialog";
+import CustomField from "customComponents/CustomField";
 
 const MyUserPage = ({ loading, user }) => {
     const { t } = useTranslation();
-    const onSubmit = (data) => {
-        // console.log("13", data);
-        // searchPosts(search.search);
+    const [openDialog, setOpenDialog] = useState(false);
+    const [fileNames, setFileNames] = useState(null);
+
+    const onSubmit = async (values) => {
+        let attachments = new FormData();
+        let newValues = values;
+        fileNames.forEach((photo) => {
+            attachments.append("attachments", photo);
+        });
+        // try {
+        //     const res = await createPostApi(newValues);
+        //     await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
+        //     history.push(`/view-post/${res?.data?.id}`);
+        // } catch (err) {}
+    };
+    const handleOpen = () => {
+        setOpenDialog(true);
+    };
+    const handleClose = () => {
+        setOpenDialog(false);
     };
     return (
         <>
@@ -38,17 +57,41 @@ const MyUserPage = ({ loading, user }) => {
                                 lastName: user?.lastName,
                                 contactEmail: user?.contactsDto?.contactEmail,
                                 contactPhone: user?.contactsDto?.contactPhone,
+                                photo: user.photo,
                             }}
                             onSubmit={onSubmit}
                         >
                             {({ values }) => (
                                 <Form className="user-form">
+                                    <CustomField
+                                        acceptedFiles={["image/*"]}
+                                        name="photo"
+                                        id="photo"
+                                        value={values.photo}
+                                        as={DropzoneDialog}
+                                        // dropzoneText={
+                                        //     "Drag and drop an image here or click"
+                                        // }
+                                        handleSave={(files) => {
+                                            handleClose();
+                                            console.log(files);
+                                            setFileNames(files);
+                                        }}
+                                        filesLimit={1}
+                                        maxFileSize={6000000}
+                                        open={openDialog}
+                                        handleClose={handleClose}
+                                    />
+
                                     <div className="avatar-wrapper fit-center">
                                         <Avatar
                                             alt="Cindy Baker"
-                                            // onClick={() =>
-                                            // history.push("/myprofile")
-                                            // }
+                                            src={
+                                                fileNames &&
+                                                URL?.createObjectURL(
+                                                    fileNames[0]
+                                                )
+                                            }
                                             sx={{ width: 124, height: 124 }}
                                             // classes={"header-avatar fit-center"}
                                         >
@@ -59,7 +102,7 @@ const MyUserPage = ({ loading, user }) => {
                                             src={edit}
                                             alt=""
                                             className="edit-img"
-                                            // onClick={() => setIsInput(true)}
+                                            onClick={handleOpen}
                                         />
                                     </div>
                                     <CustomText

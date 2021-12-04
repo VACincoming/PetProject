@@ -13,36 +13,61 @@ import CustomText from "customComponents/CustomText";
 import { useTranslation } from "react-i18next";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import Container from "@mui/material/Container";
+import Post from "components/Post";
 
-const MyPostsPage = ({ loading, getPost, post }) => {
-    const { id } = useParams();
+const MyPostsPage = ({ loading, getMyPosts, myPosts, deletePost }) => {
     const { t } = useTranslation();
-    console.log("21");
     useEffect(() => {
-        // getPost(id);
-    }, [id]);
-    const date = post?.createdAt
-        ?.split(" ")[0]
-        ?.split("-")
-        ?.reverse()
-        ?.join(".");
+        if (!myPosts.length) {
+            getMyPosts();
+        }
+    }, []);
+
     return (
         <>
-            <div data-component="myposts-container">No posts</div>
+            {loading ? (
+                <Loader />
+            ) : (
+                <div data-component="myposts-container">
+                    {myPosts && myPosts.length ? (
+                        myPosts?.map((post) => {
+                            return (
+                                <Post
+                                    title={post.title}
+                                    description={post.description}
+                                    createdAt={post.createdAt}
+                                    contactEmail={post.contactEmail}
+                                    contactPhone={post.contactPhone}
+                                    photoUrl={post.photos[0]}
+                                    key={post.id}
+                                    id={post.id}
+                                    role={"ADMIN"}
+                                    type={post.type}
+                                    status={post.status}
+                                    deletePost={() => deletePost(post.id)}
+                                />
+                            );
+                        })
+                    ) : (
+                        <div className="no-data">No posts</div>
+                    )}
+                </div>
+            )}
         </>
     );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getPost: (id) => dispatch(PostsActions.getPost(id)),
+        getMyPosts: () => dispatch(PostsActions.getMyPosts()),
+        deletePost: (id) => dispatch(PostsActions.deletePost(id)),
     };
 };
 
 const mapStateToProps = (state) => {
     return {
         loading: state.posts.loading,
-        post: state.posts.post,
+        myPosts: state.posts.myPosts,
     };
 };
 

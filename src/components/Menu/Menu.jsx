@@ -28,11 +28,11 @@ export default function Menu({ currentLink }) {
             text: "My Posts",
             link: "/myposts",
         },
-        {
-            icon: <Favorite />,
-            text: "My Favorites",
-            link: "/myfavorites",
-        },
+        // {
+        //     icon: <Favorite />,
+        //     text: "My Favorites",
+        //     link: "/myfavorites",
+        // },
         {
             icon: <Logout />,
             text: "Logout",

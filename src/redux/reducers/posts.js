@@ -4,8 +4,30 @@ const PostsReducer = (
         error: null,
         posts: [],
         post: null,
+        myPosts: []
     }, action) => {
     switch (action.type) {
+        case 'FETCH_MYPOSTS_SUCCESS':
+            return {
+                ...state,
+                myPosts: action.payload,
+                error: null,
+                loading: false,
+            }
+        case 'FETCH_MYPOSTS_REQUEST':
+            return {
+                ...state,
+                myPosts: null,
+                error: null,
+                loading: true,
+            }
+        case 'FETCH_MYPOSTS_ERROR':
+            return {
+                ...state,
+                myPosts: null,
+                error: action.payload,
+                loading: false
+            }
         case 'FETCH_POSTS_SUCCESS':
             return {
                 ...state,

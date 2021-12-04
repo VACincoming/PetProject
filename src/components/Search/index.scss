@@ -1,16 +1,29 @@
+@import "styles/_index.scss";
+
 .search-form {
     display: flex;
 }
 
-.search-input {
-    width: 600px;
-    margin-right: 1.5rem;
+@include breakpoint(mobile) {
+    .search-input {
+        width: 100%;
+    }
+    .search-icon {
+        display: none;
+    }
+}
+
+@include breakpoint(tablet) {
+    .search-input {
+        width: 600px;
+        margin-right: 1.5rem;
+    }
+    .search-icon {
+        margin-left: 1rem;
+        display: block;
+    }
 }
 
 .search-btn {
     margin-left: 1.5rem !important;
-}
-
-.search-icon {
-    margin-left: 1rem;
 }

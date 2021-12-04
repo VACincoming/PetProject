@@ -14,10 +14,10 @@ const Post = ({
     contactPhone = "+380931235422",
     photoUrl = "https://ichef.bbci.co.uk/news/976/cpsprodpb/1086B/production/_115619676_dog2.jpg",
     deletePost,
+    status,
+    role,
 }) => {
     const date = createdAt?.split(" ")[0];
-    let time = createdAt?.split(" ")[1];
-    time = time?.replace(/-/g, ":");
     const [typeAnn, setTypeAnn] = useState(type);
     const [openModal, setOpenModal] = useState(false);
     const history = useHistory();
@@ -28,6 +28,9 @@ const Post = ({
         }
         setTypeAnn("Втрачено");
     }, []);
+    if (status !== "ACTIVE") {
+        return null;
+    }
     return (
         <div data-component="announ">
             <div
@@ -45,14 +48,16 @@ const Post = ({
                         >
                             {title}
                         </h3>
-                        <CustomButton
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setOpenModal(true);
-                            }}
-                            text="Delete"
-                            variant="contained"
-                        />
+                        {role === "ADMIN" && (
+                            <CustomButton
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setOpenModal(true);
+                                }}
+                                text="Delete"
+                                variant="contained"
+                            />
+                        )}
                     </div>
                     <span className="announ-description">{description}</span>
                 </div>

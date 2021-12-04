@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PostsActions from "redux/actions/PostsActions";
 import "./index.scss";
 
-const PostContainer = ({ posts, deletePost }) => {
+const PostContainer = ({ posts, deletePost, user = {} }) => {
     return (
         <>
             {posts && posts.length ? (
@@ -19,7 +19,9 @@ const PostContainer = ({ posts, deletePost }) => {
                             photoUrl={post.photos[0]}
                             key={post.id}
                             id={post.id}
+                            role={user?.role}
                             type={post.type}
+                            status={post.status}
                             deletePost={() => deletePost(post.id)}
                         />
                     );
@@ -34,6 +36,7 @@ const PostContainer = ({ posts, deletePost }) => {
 const mapStateToProps = (state) => {
     return {
         posts: state.posts.posts,
+        user: state.user.user,
     };
 };
 

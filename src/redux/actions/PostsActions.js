@@ -1,6 +1,7 @@
 import {
     searchPosts,
     getPosts,
+    getMyPosts,
     getPost,
     deletePost
 } from 'api/posts.api';
@@ -16,6 +17,19 @@ const actionCreator = {
                 })
                 .catch(error => {
                     dispatch(dispatchAction('FETCH_POSTS_ERROR', error));
+                    throw error;
+                })
+        )
+    },
+    getMyPosts: () => dispatch => {
+        dispatch(dispatchAction('FETCH_MYPOSTS_REQUEST'))
+        return (
+            getMyPosts()
+                .then(response => {
+                    dispatch(dispatchAction('FETCH_MYPOSTS_SUCCESS', response.data));
+                })
+                .catch(error => {
+                    dispatch(dispatchAction('FETCH_MYPOSTS_ERROR', error));
                     throw error;
                 })
         )
