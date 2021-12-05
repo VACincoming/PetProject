@@ -27,13 +27,14 @@ const actionCreator = {
                     dispatch(dispatchAction('FETCH_USER_SUCCESS', response.data));
                 })
                 .catch(error => {
-                    dispatch(dispatchAction('FETCH_USER_ERROR', error));
-                    throw error;
+                    dispatch(dispatchAction('FETCH_USER_ERROR', error.response.data.message));
+                    throw error.response.data.message;
                 })
         )
     },
     logoutUser: () => dispatch => {
         dispatch(dispatchAction('FETCH_USER_REQUEST'));
+        dispatch(dispatchAction('FETCH_USER_SUCCESS', null));
     }
 }
 

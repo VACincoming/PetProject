@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 import CustomInput from "customComponents/CustomInput";
 import CustomButton from "customComponents/CustomButton";
 import Avatar from "@mui/material/Avatar";
@@ -20,7 +20,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { Formik, Field, FastField, Form } from "formik";
 import { connect } from "react-redux";
 import UserActions from 'redux/actions/UserActions';
-
+import Alert from 'components/Alert';
 const useStyles = makeStyles((theme) => ({
     paper: {
         // marginTop: theme.spacing(8),
@@ -49,17 +49,23 @@ const LoginPage = ({
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
-
+    const [isAlert, setIsAlert] = useState(false);
+    const [errText, setErrText] = useState('');
     const handleLogin = async (data) => {
         try {
-            loginUser(data);
+            await loginUser(data);
             history.push('/');
         } catch (err) {
-            console.log(err, ' 60');
+            setIsAlert(true);
+            setErrText(err);
+            setTimeout(() => {
+                setIsAlert(false);
+            }, 30000)
         }
     };
     return (
         <Container component="main" maxWidth="xs">
+            <Alert type='error' message={errText} open={isAlert} />
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>

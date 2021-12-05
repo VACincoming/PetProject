@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Suspense } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import LoginPage from "pages/LoginPage";
 import MainPage from "pages/MainPage";
@@ -15,14 +15,18 @@ import Menu from "components/Menu";
 import { useLocation } from "react-router-dom";
 import Container from "@mui/material/Container";
 import "./index.scss";
+import Loader from "components/Loader";
+
 const Routers = ({ loading, user }) => {
     const location = useLocation();
     const containerRef = useRef();
     useEffect(() => {
         const container = containerRef.current;
         if (location.pathname === "/myprofile") {
-            container.className = "user-content-container";
-            return;
+            if (container) {
+                container.className = "user-content-container";
+                return;
+            }
         }
         if (container) {
             container.className = "user-content-container no-background";
@@ -30,49 +34,56 @@ const Routers = ({ loading, user }) => {
     }, [location.pathname, user]);
     return (
         <Switch>
-            <Route path="/login">
-                <LoginPage />
-            </Route>
-            <Route path="/registration">
-                <RegistrationPage />
-            </Route>
-            <Route exact path="/">
-                <MainPage />
-            </Route>
-            <Route exact path="/view-post/:id">
-                <ViewPost />
-            </Route>
-            <Route exact path="/test-page">
-                <TestPage />
-            </Route>
-            {user && (
-                <>
-                    <ProtectedRouter exact path="/create">
-                        <CreatePage />
-                    </ProtectedRouter>
-                    <ProtectedRouter exact path="/logout">
-                        <Logout />
-                    </ProtectedRouter>
-                    <div data-component="user-page">
-                        <div className="menu-container">
-                            <Menu currentLink={location.pathname} />
-                        </div>
-                        <Container
-                            className="user-content-container"
-                            maxWidth="lg"
-                            ref={containerRef}
-                        >
-                            <ProtectedRouter exact path="/myprofile">
-                                <MyUserPage />
-                            </ProtectedRouter>
-                            <ProtectedRouter exact path="/myposts">
-                                <MyPostsPage />
-                            </ProtectedRouter>
-                        </Container>
-                    </div>
-                </>
-            )}
-            <Redirect to="/" />
+            <Suspense fallback={null}>
+                {!loading ? (
+                    <>
+                        <Route exact path="/login">
+                            <LoginPage />
+                        </Route>
+                        <Route exact path="/registration">
+                            <RegistrationPage />
+                        </Route>
+                        <Route exact path="/">
+                            <MainPage />
+                        </Route>
+                        <Route exact path="/view-post/:id">
+                            <ViewPost />
+                        </Route>
+                        <Route exact path="/test-page">
+                            <TestPage />
+                        </Route>
+                        <ProtectedRouter exact path="/create">
+                            <CreatePage />
+                        </ProtectedRouter>
+                        <ProtectedRouter exact path="/logout">
+                            <Logout />
+                        </ProtectedRouter>
+                        {["/myprofile", "/myposts"].includes(
+                            location.pathname
+                        ) && (
+                            <div data-component="user-page">
+                                <div className="menu-container">
+                                    <Menu currentLink={location.pathname} />
+                                </div>
+                                <Container
+                                    className="user-content-container"
+                                    maxWidth="lg"
+                                    ref={containerRef}
+                                >
+                                    <ProtectedRouter exact path="/myprofile">
+                                        <MyUserPage />
+                                    </ProtectedRouter>
+                                    <ProtectedRouter exact path="/myposts">
+                                        <MyPostsPage />
+                                    </ProtectedRouter>
+                                </Container>
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <Loader />
+                )}
+            </Suspense>
         </Switch>
     );
 };

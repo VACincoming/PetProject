@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import Header from "components/Header";
-import Loader from "components/Loader";
 import Filters from "components/Filters";
 import Routers from "pages/Routers";
 import { useLocation } from "react-router-dom";
@@ -22,7 +21,7 @@ const Master = ({ getUser, user = {}, loading }) => {
         }
     };
     useEffect(() => {
-        !user?.id && getUser();
+        getUser();
     }, []);
 
     useEffect(() => {

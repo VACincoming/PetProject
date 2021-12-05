@@ -74,7 +74,6 @@ const MyUserPage = ({ loading, user }) => {
                                         // }
                                         handleSave={(files) => {
                                             handleClose();
-                                            console.log(files);
                                             setFileNames(files);
                                         }}
                                         filesLimit={1}

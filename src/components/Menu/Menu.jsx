@@ -48,7 +48,6 @@ export default function Menu({ currentLink }) {
                             <div key={index}>
                                 <MenuItem
                                     onClick={() => {
-                                        console.log("49", list.link);
                                         history.push(list.link);
                                     }}
                                     className={isActive(list.link)}

@@ -12,12 +12,12 @@ const ProtectedRouter = (data) => {
             return true;
         }
     }
+
     // useEffect(() => {}, [loading]);
     return (
         <Route
             {...rest}
             render={(props) => {
-                console.log("21", props.location, data);
                 if (checkAuth(props.location)) {
                     return children;
                 } else {

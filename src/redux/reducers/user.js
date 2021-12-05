@@ -1,6 +1,6 @@
 const UserReducer = (state = {
     user: null,
-    loading: false,
+    loading: true,
     error: null,
     language: 'ua'
 }, action) => {

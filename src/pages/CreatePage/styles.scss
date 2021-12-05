@@ -35,6 +35,8 @@
     .create-wrapper {
         background-color: #fafafa;
         padding: 3rem 5rem;
+        max-width: 1400px;
+        margin: auto;
     }
     .form-group {
         display: flex;
@@ -50,6 +52,7 @@
     }
     .form-input-description {
         padding: 1rem;
+        width: 1110px !important;
     }
     .form-create-btn {
         display: flex;
