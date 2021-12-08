@@ -128,13 +128,13 @@ const CreatePage = () => {
                                                 <FormControlLabel
                                                     value="FOUND"
                                                     control={<Radio />}
-                                                    label="FOUND"
+                                                    label="Знайдено"
                                                     name="type"
                                                 />
                                                 <FormControlLabel
                                                     value="LOST"
                                                     control={<Radio />}
-                                                    label="LOST"
+                                                    label="Втрачено"
                                                     name="type"
                                                 />
                                             </RadioGroup>
