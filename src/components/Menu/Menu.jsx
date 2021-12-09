@@ -8,24 +8,25 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import "./index.scss";
 import PermIdentity from "@mui/icons-material/PermIdentity";
 import Receipt from "@mui/icons-material/Receipt";
-import Favorite from "@mui/icons-material/Favorite";
 import Logout from "@mui/icons-material/Logout";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Menu({ currentLink }) {
     const history = useHistory();
+    const { t } = useTranslation();
     const isActive = (link) => {
         return currentLink?.includes(link) ? "active-item" : "";
     };
     const menuList = [
         {
             icon: <PermIdentity />,
-            text: "My Profile",
+            text: `${t('create:myProfile')}`,
             link: "/myprofile",
         },
         {
             icon: <Receipt />,
-            text: "My Posts",
+            text: `${t('create:myPosts')}`,
             link: "/myposts",
         },
         // {
@@ -35,7 +36,7 @@ export default function Menu({ currentLink }) {
         // },
         {
             icon: <Logout />,
-            text: "Logout",
+            text: `${t('create:logout')}`,
             link: "/logout",
         },
     ];

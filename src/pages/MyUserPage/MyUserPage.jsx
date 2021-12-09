@@ -46,7 +46,7 @@ const MyUserPage = ({ loading, user }) => {
             ) : (
                 <>
                     <CustomText
-                        title={t("My Profile")}
+                        title={t("create:myProfile")}
                         className="fit-center"
                         tag="h2"
                     />
@@ -105,7 +105,7 @@ const MyUserPage = ({ loading, user }) => {
                                         />
                                     </div>
                                     <CustomText
-                                        title={t("Infromation about profile")}
+                                        title={t("create:profileInfo")}
                                         style={{ marginBottom: "1.5rem" }}
                                         tag="h2"
                                     />
@@ -115,13 +115,13 @@ const MyUserPage = ({ loading, user }) => {
                                                 title={values.firstName}
                                                 className="user-field"
                                                 inputName="firstName"
-                                                label="First Name"
+                                                label={t('auth:firstName')}
                                             />
                                             <FlexInput
                                                 title={values.lastName}
                                                 className="user-field"
                                                 inputName="lastName"
-                                                label="Last Name"
+                                                label={t('auth:lastName')}
                                             />
                                         </div>
                                         <div className="user-fields-column">
@@ -129,13 +129,13 @@ const MyUserPage = ({ loading, user }) => {
                                                 title={values.contactEmail}
                                                 className="user-field"
                                                 inputName="contactEmail"
-                                                label="Email"
+                                                label={t('auth:email')}
                                             />
                                             <FlexInput
                                                 title={values.contactPhone}
                                                 className="user-field"
                                                 inputName="contactPhone"
-                                                label="Contact Phone"
+                                                label={t("auth:contactPhone")}
                                             />
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@ const MyUserPage = ({ loading, user }) => {
                                         type="submit"
                                         variant="contained"
                                     >
-                                        {t("Save")}
+                                        {t("create:save")}
                                     </CustomButton>
                                 </Form>
                             )}

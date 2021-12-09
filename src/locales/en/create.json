@@ -11,5 +11,12 @@
     "lost": "Lost",
     "found": "Found",
     "dragAndDrop": "Drag and drop an image here or click",
-    "selectOption": ""
+    "selectOption": "",
+    "search": "Search",
+    "searchInput": "What are you looking for?",
+    "myProfile": "My Profile",
+    "myPosts": "My Posts",
+    "logout": "Logout",
+    "profileInfo": "Information about profile",
+    "save": "Save"
 }

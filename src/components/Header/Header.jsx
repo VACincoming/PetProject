@@ -44,6 +44,12 @@ const Header = ({ user }) => {
         history.push("/login");
         return;
     };
+    const getAvatarContent = () => {
+        if (user?.firstName && user?.lastName) {
+            return user?.firstName[0] + user?.lastName[0]
+        }
+        return user?.email[0] + user?.email[1]
+    }
     return (
         <div className="header">
             <Container
@@ -106,8 +112,7 @@ const Header = ({ user }) => {
                                     alt="Cindy Baker"
                                     onClick={() => history.push("/myprofile")}
                                 >
-                                    {user?.firstName[0]}
-                                    {user?.lastName[0]}
+                                    {getAvatarContent()}
                                 </Avatar>
                             ) : (
                                 <CustomButton
