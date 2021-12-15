@@ -33,7 +33,7 @@ const MyUserPage = ({ loading, user }) => {
             phone: values.contactPhone || "",
             sex: values.sex || "",
         };
-        fileNames.forEach((photo) => {
+        fileNames && fileNames.forEach((photo) => {
             attachments.append("attachments", photo);
         });
         fileNames &&
@@ -53,7 +53,7 @@ const MyUserPage = ({ loading, user }) => {
         setOpenDialog(false);
     };
     const getImage = () => {
-        if (fileNames) {
+        if (fileNames && fileNames.length > 0) {
             return URL?.createObjectURL(fileNames[0]);
         }
         if (user.photo) {
@@ -109,8 +109,8 @@ const MyUserPage = ({ loading, user }) => {
                                             src={getImage()}
                                             sx={{ width: 124, height: 124 }}
                                         >
-                                            {!user.photo && user?.firstName[0]}
-                                            {!user.photo && user?.lastName[0]}
+                                            {/* {!user.photo && user?.firstName[0]}
+                                            {!user.photo && user?.lastName[0]} */}
                                         </Avatar>
                                         <img
                                             src={edit}
