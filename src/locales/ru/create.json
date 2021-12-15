@@ -1,14 +1,21 @@
 {
     "title": "Создать Объявление",
-    "postTitle": "Заголовок",
+    "postTitle": "Оглавление",
     "type": "Тип",
-    "detailedInfo": "Детальна інформація",
-    "emailAddress": "E-mail адреса",
+    "detailedInfo": "Детальная информаци",
+    "emailAddress": "E-mail адрес",
     "name": "Название",
     "description": "Описание",
     "photo": "Фото",
     "phone": "Контактный номер",
     "lost": "Потеряно",
     "found": "Найдено",
-    "dragAndDrop": "Перетащите картинки сюда или кликните"
+    "dragAndDrop": "Перетащите картинки сюда или кликните",
+    "search": "Искать",
+    "searchInput": "Что вы ищите?",
+    "myProfile": "Мой Профиль",
+    "myPosts": "Мои посты",
+    "logout": "Выйти",
+    "profileInfo": "Информация про профиль",
+    "save": "Сохранить"
 }

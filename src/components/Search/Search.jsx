@@ -35,14 +35,14 @@ const Search = ({ searchPosts, getPosts }) => {
                         // label={t("search")}
                         size="small"
                         value={values.search}
-                        placeholder={t("Що ви шукаєте?")}
+                        placeholder={t("create:searchInput")}
                     />
                     <CustomButton
                         variant="contained"
                         classes="search-btn header_create-btn"
                         type="submit"
                     >
-                        Шукати
+                        {t("create:search")}
                         <img src={SearchIcon} className="search-icon" alt="O" />
                     </CustomButton>
                 </Form>
