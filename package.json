@@ -27,6 +27,8 @@
         "create-formik-fields-comparator": "^1.2.0",
         "formik": "^2.2.6",
         "i18next": "^19.8.4",
+        "express": "^4.16.4",
+        "react-google-recaptcha-v3": "1.9.7",
         "material-ui-dropzone": "^3.5.0",
         "material-ui-popup-state": "^2.0.0",
         "mime": "^1.6.0",
@@ -50,6 +52,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
+        "server": "nodemon server.js",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
@@ -77,5 +80,6 @@
         "ts-loader": "^8.0.7",
         "tsconfig-paths": "^3.9.0",
         "tsconfig-paths-webpack-plugin": "^3.3.0"
-    }
+    },
+    "proxy": "http://localhost:5000/"
 }

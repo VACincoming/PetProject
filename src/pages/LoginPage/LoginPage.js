@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import CustomInput from "customComponents/CustomInput";
 import CustomButton from "customComponents/CustomButton";
 import Avatar from "@mui/material/Avatar";
@@ -21,6 +21,11 @@ import { Formik, Field, FastField, Form } from "formik";
 import { connect } from "react-redux";
 import UserActions from 'redux/actions/UserActions';
 import Alert from 'components/Alert';
+
+import {
+    useGoogleReCaptcha
+} from 'react-google-recaptcha-v3';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         // marginTop: theme.spacing(8),
@@ -46,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const LoginPage = ({
     loginUser
 }) => {
+    const { executeRecaptcha } = useGoogleReCaptcha();
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
@@ -60,14 +66,36 @@ const LoginPage = ({
             setErrText(err);
             setTimeout(() => {
                 setIsAlert(false);
-            }, 30000)
+            }, 3000)
         }
     };
+    const handleReCaptchaVerify = useCallback(async () => {
+        if (!executeRecaptcha) {
+            console.log('Execute recaptcha not yet available');
+            return;
+        }
+
+        const token = await executeRecaptcha('login');
+        localStorage.setItem('token', token);
+    }, []);
+
+    useEffect(() => {
+        handleReCaptchaVerify();
+    }, [window.location.href]);
     return (
         <Container component="main" maxWidth="xs">
             <Alert type='error' message={errText} open={isAlert} />
             <CssBaseline />
             <div className={classes.paper}>
+                <CustomButton
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={() => window.location.href = '/registration'}
+                    classes={classes.submit}
+                >
+                    test captcha
+                </CustomButton>
                 <Avatar className={classes.avatar}>
                     <PetsIcon />
                 </Avatar>

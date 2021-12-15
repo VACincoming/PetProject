@@ -16,7 +16,7 @@ import { useLocation } from "react-router-dom";
 import Container from "@mui/material/Container";
 import "./index.scss";
 import Loader from "components/Loader";
-
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 const Routers = ({ loading, user }) => {
     const location = useLocation();
     const containerRef = useRef();
@@ -37,12 +37,16 @@ const Routers = ({ loading, user }) => {
             <Suspense fallback={null}>
                 {!loading ? (
                     <>
-                        <Route exact path="/login">
-                            <LoginPage />
-                        </Route>
-                        <Route exact path="/registration">
-                            <RegistrationPage />
-                        </Route>
+                        <GoogleReCaptchaProvider reCaptchaKey="6Ld9WaIdAAAAAOgqLzgTBEHNn_lgPn4ZDAi-2zMj">
+                            <Route exact path="/login">
+                                <LoginPage />
+                            </Route>{" "}
+                        </GoogleReCaptchaProvider>
+                        <GoogleReCaptchaProvider reCaptchaKey="6Ld9WaIdAAAAAOgqLzgTBEHNn_lgPn4ZDAi-2zMj">
+                            <Route exact path="/registration">
+                                <RegistrationPage />
+                            </Route>
+                        </GoogleReCaptchaProvider>
                         <Route exact path="/">
                             <MainPage />
                         </Route>
