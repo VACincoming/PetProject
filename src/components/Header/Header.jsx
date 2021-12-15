@@ -44,6 +44,12 @@ const Header = ({ user }) => {
         history.push("/login");
         return;
     };
+    const getImage = () => {
+        if (user.photo) {
+            return user.photo;
+        }
+    };
+
     return (
         <div className="header">
             <Container
@@ -105,9 +111,10 @@ const Header = ({ user }) => {
                                 <Avatar
                                     alt="Cindy Baker"
                                     onClick={() => history.push("/myprofile")}
+                                    src={getImage()}
                                 >
-                                    {user?.firstName[0]}
-                                    {user?.lastName[0]}
+                                    {!user.photo && user?.firstName[0]}
+                                    {!user.photo && user?.lastName[0]}
                                 </Avatar>
                             ) : (
                                 <CustomButton

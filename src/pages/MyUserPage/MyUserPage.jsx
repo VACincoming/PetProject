@@ -15,7 +15,8 @@ import Avatar from "@mui/material/Avatar";
 import edit from "static/img/edit.png";
 import DropzoneDialog from "components/DropzoneDialog";
 import CustomField from "customComponents/CustomField";
-
+import { updateUser } from "api/auth.api";
+import { uploadFilesApi } from "api/files.api";
 const MyUserPage = ({ loading, user }) => {
     const { t } = useTranslation();
     const [openDialog, setOpenDialog] = useState(false);
@@ -23,10 +24,22 @@ const MyUserPage = ({ loading, user }) => {
 
     const onSubmit = async (values) => {
         let attachments = new FormData();
-        let newValues = values;
+        let newValues = {
+            birthday: values.birthday || "",
+            country: values.country || "",
+            email: values.contactEmail || "",
+            firstName: values.firstName || "",
+            lastName: values.lastName || "",
+            phone: values.contactPhone || "",
+            sex: values.sex || "",
+        };
         fileNames.forEach((photo) => {
             attachments.append("attachments", photo);
         });
+        fileNames &&
+            (await uploadFilesApi(attachments, user.id, "PROFILE_PHOTO"));
+        await updateUser(newValues, user.id);
+        console.log("30", values);
         // try {
         //     const res = await createPostApi(newValues);
         //     await uploadFilesApi(attachments, res.data.id, "POST_PHOTO");
@@ -38,6 +51,14 @@ const MyUserPage = ({ loading, user }) => {
     };
     const handleClose = () => {
         setOpenDialog(false);
+    };
+    const getImage = () => {
+        if (fileNames) {
+            return URL?.createObjectURL(fileNames[0]);
+        }
+        if (user.photo) {
+            return user.photo;
+        }
     };
     return (
         <>
@@ -85,17 +106,11 @@ const MyUserPage = ({ loading, user }) => {
                                     <div className="avatar-wrapper fit-center">
                                         <Avatar
                                             alt="Cindy Baker"
-                                            src={
-                                                fileNames &&
-                                                URL?.createObjectURL(
-                                                    fileNames[0]
-                                                )
-                                            }
+                                            src={getImage()}
                                             sx={{ width: 124, height: 124 }}
-                                            // classes={"header-avatar fit-center"}
                                         >
-                                            {user?.firstName[0]}
-                                            {user?.lastName[0]}
+                                            {!user.photo && user?.firstName[0]}
+                                            {!user.photo && user?.lastName[0]}
                                         </Avatar>
                                         <img
                                             src={edit}

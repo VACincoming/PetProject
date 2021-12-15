@@ -22,6 +22,14 @@ const loginApi = (data) => {
     })
 };
 
+const updateUser = (data, id) => {
+    return makeRequest({
+        method: 'PUT',
+        url: `${apiUrl}/users/${id}`,
+        data
+    })
+}
+
 const getUserApi = () => {
     return makeRequest({
         method: 'GET',
@@ -33,5 +41,6 @@ export {
     registrationApi,
     loginApi,
     activationCodeApi,
-    getUserApi
+    getUserApi,
+    updateUser
 }
