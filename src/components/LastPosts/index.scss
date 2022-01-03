@@ -1,3 +1,5 @@
+@import 'styles/_index.scss';
+
 [data-component="last-posts"] {
     margin-left: 1.5rem;
     padding: 1.5rem;
@@ -12,7 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #c4c4c4;
+        border-bottom: 1px solid $common-btn;
         &:hover {
             cursor: pointer;
         }

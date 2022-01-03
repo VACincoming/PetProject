@@ -1,9 +1,10 @@
+@import 'styles/_index.scss';
+
 [data-component="view-post-page"] {
     padding: 2rem;
-    // background: #ebebeb;
     min-height: 90vh;
     .view-post-container {
-        background: #fff;
+        background: $white-color;
         padding: 3rem;
     }
     .photo-container {
@@ -23,7 +24,7 @@
         display: flex;
         align-items: center;
         padding: 1rem 2rem;
-        border: 2px solid #ff5100;
+        border: 2px solid $orange-border;
         width: fit-content;
         border-radius: 10px;
         & img {

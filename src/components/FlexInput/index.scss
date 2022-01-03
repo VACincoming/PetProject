@@ -1,3 +1,5 @@
+@import 'styles/_variables.scss';
+
 .edit-img {
     position: absolute;
     top: -13px;
@@ -19,7 +21,7 @@
         padding: 1rem;
     }
     fieldset {
-        border: 1.5px solid #202833;
+        border: 1.5px solid $header-color;
         border-radius: 10px;
     }
 }

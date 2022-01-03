@@ -9,7 +9,7 @@
     justify-content: center;
 
     .user-content-container {
-        background: #fff;
+        background: $white-color;
         padding: 3rem;
         height: 100%;
         margin-right: 2rem;
@@ -22,7 +22,7 @@
     }
 
     .active-item {
-        color: #fa7638;
+        color: $active-item;
     }
     .menu-container {
         margin-left: 2rem;
