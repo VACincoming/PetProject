@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import App from "./App";
@@ -8,11 +8,9 @@ import "./i18n";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Suspense fallback={null}>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </Suspense>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );

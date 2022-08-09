@@ -6,20 +6,13 @@ import Routers from "pages/Routers";
 import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import UserActions from "redux/actions/UserActions";
+import Loader from "components/Loader";
 
 const Master = ({ getUser, user = {}, loading }) => {
-    const pathname = useLocation().pathname;
-    const isNeedHeader = () => {
-        if (pathname !== "/login" && pathname !== "/registration") {
-            return <Header />;
-        }
-        return null;
-    };
-    const isNeedFilters = () => {
-        if (pathname === "/") {
-            return <Filters />;
-        }
-    };
+    const { pathname } = useLocation();
+    const noHeaderPaths = ['/login', '/registration'];
+    const filterPaths = ['/'];
+
     useEffect(() => {
         getUser();
     }, []);
@@ -32,9 +25,13 @@ const Master = ({ getUser, user = {}, loading }) => {
 
     return (
         <>
-            {isNeedHeader()}
-            {isNeedFilters()}
-            <Routers />
+            {loading ? <Loader /> : (
+                <>
+                    {noHeaderPaths.includes(pathname) ? null : <Header />}
+                    {filterPaths.includes(pathname) ? <Filters /> : null}
+                    <Routers />
+                </>
+            )}
         </>
     );
 };
@@ -45,10 +42,10 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user }) => {
     return {
-        user: state.user.user,
-        loading: state.user.loading,
+        user: user.user,
+        loading: user.loading,
     };
 };
 

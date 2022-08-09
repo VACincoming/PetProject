@@ -7,8 +7,8 @@ import "./index.scss";
 const PostContainer = ({ posts, deletePost, user = {} }) => {
     return (
         <>
-            {posts && posts.length ? (
-                posts?.map((post) => {
+            {posts?.length ? (
+                posts.map((post) => {
                     return (
                         <Post
                             title={post.title}
@@ -33,10 +33,10 @@ const PostContainer = ({ posts, deletePost, user = {} }) => {
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ posts, user }) => {
     return {
-        posts: state.posts.posts,
-        user: state.user.user,
+        posts: posts.posts,
+        user: user.user,
     };
 };
 

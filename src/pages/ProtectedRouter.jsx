@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -12,8 +12,6 @@ const ProtectedRouter = (data) => {
             return true;
         }
     }
-
-    // useEffect(() => {}, [loading]);
     return (
         <Route
             {...rest}
@@ -37,10 +35,10 @@ const ProtectedRouter = (data) => {
     );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ user }) => {
     return {
-        loading: state.user.user,
-        user: state.user.user,
+        loading: user.user,
+        user: user.user,
     };
 };
 
